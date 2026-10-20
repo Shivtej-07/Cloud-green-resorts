@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" fill="none">
+  <!-- Brand Emblem Icon -->
+  <g transform="translate(10, 8)">
+    <rect width="64" height="64" rx="16" fill="#1F4D3A" />
+    <rect x="2" y="2" width="60" height="60" rx="14" stroke="#C9A24B" stroke-width="1.2" stroke-opacity="0.6"/>
+    <!-- Sun -->
+    <circle cx="44" cy="24" r="6" fill="#C9A24B" />
+    <!-- Mountains -->
+    <path d="M12 50 L26 28 L40 50 Z" fill="#3D7D62" opacity="0.9"/>
+    <path d="M26 50 L42 22 L54 50 Z" fill="#C9A24B" opacity="0.85"/>
+    <path d="M18 50 L34 32 L48 50 Z" fill="#1F4D3A"/>
+    <!-- Cloud -->
+    <path d="M20 33 C22 28, 28 28, 30 31 C32 28, 38 29, 38 33 C41 33, 42 36, 40 38 C38 40, 20 40, 20 33 Z" fill="#FAF7F0" opacity="0.85"/>
+  </g>
+  <!-- Brand Typography -->
+  <text x="86" y="38" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" letter-spacing="2.5" fill="#1F4D3A">
+    CLOUDGREEN
+  </text>
+  <text x="88" y="55" font-family="'Poppins', sans-serif" font-size="9" font-weight="600" letter-spacing="3.2" fill="#C9A24B">
+    RESORT &amp; SPA • MAHABALESHWAR
+  </text>
+  <text x="88" y="68" font-family="'Poppins', sans-serif" font-size="8" font-weight="400" letter-spacing="1" fill="#718096">
+    क्लाउडग्रीन रिसॉर्ट &amp; स्पा
+  </text>
+</svg>

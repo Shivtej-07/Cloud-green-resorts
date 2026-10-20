@@ -1,0 +1,93 @@
+export const spaServices = [
+  {
+    id: "swedish-relaxation",
+    name: "Swedish Relaxation Massage",
+    category: "Full Body",
+    duration: "60 mins / 90 mins",
+    price: 1800,
+    price90: 2500,
+    description: "Classic therapeutic massage utilizing gentle, rhythmic gliding strokes to melt muscle tension, promote lymphatic circulation, and induce deep serenity.",
+    benefits: ["Relieves general muscle stiffness", "Improves blood circulation", "Lowers cortisol and promotes restful sleep"],
+    oils: "Warm Sweet Almond & Lavender Oil",
+    image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80",
+    popular: true
+  },
+  {
+    id: "ayurvedic-abhyanga",
+    name: "Traditional Ayurvedic Abhyanga",
+    category: "Ayurveda",
+    duration: "60 mins",
+    price: 2100,
+    price90: 2800,
+    description: "Ancient Indian holistic full-body massage using warm herb-infused medicated oils tailored to pacify Vata and relieve fatigue from mountain travel.",
+    benefits: ["Deep cellular nourishment", "Boosts immune resilience", "Detoxifies joints and eases body fatigue"],
+    oils: "Warm Medicated Dhanwantaram Tailam",
+    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+    popular: true
+  },
+  {
+    id: "aromatherapy-bliss",
+    name: "Hill Blossom Aromatherapy",
+    category: "Aroma Therapy",
+    duration: "60 mins",
+    price: 2200,
+    price90: 2900,
+    description: "Customized sensory journey blending therapeutic grade essential oils extracted from hillside botanical blossoms like chamomile, eucalyptus, and geranium.",
+    benefits: ["Calms the nervous system", "Clears respiratory passages with cool hill aromas", "Elevates mood and restores emotional balance"],
+    oils: "Geranium, Eucalyptus & Bergamot Elixir",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80",
+    popular: false
+  },
+  {
+    id: "deep-tissue-therapy",
+    name: "Deep Tissue Mountain Relief",
+    category: "Therapeutic",
+    duration: "60 mins",
+    price: 2400,
+    price90: 3200,
+    description: "Intense, focused neuromuscular technique targeting chronic knots, deep muscle tension, and lower back stiffness from winding road drives.",
+    benefits: ["Releases chronic muscle knots", "Ideal after trekking or long road trips", "Restores postural alignment"],
+    oils: "Wintergreen, Peppermint & Sesame Extract",
+    image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80",
+    popular: true
+  },
+  {
+    id: "strawberry-herbal-scrub",
+    name: "Mahabaleshwar Strawberry Scrub & Polish",
+    category: "Body Scrubs",
+    duration: "45 mins",
+    price: 1600,
+    price90: null,
+    description: "Exquisite exfoliating scrub utilizing fresh antioxidant-rich strawberry extracts, wild mountain honey, and fine walnut shell grains to reveal soft, glowing skin.",
+    benefits: ["Exfoliates dead skin cells", "Rich in vitamin C and antioxidants", "Leaves skin baby-soft and radiant"],
+    oils: "Fresh Strawberry Pulp & Wild Flower Honey",
+    image: "https://images.unsplash.com/photo-1512290900672-1f551b72e5dc?auto=format&fit=crop&w=800&q=80",
+    popular: true
+  },
+  {
+    id: "rejuvenating-facial",
+    name: "Cloud Glow Rejuvenating Facial",
+    category: "Facials",
+    duration: "50 mins",
+    price: 1750,
+    price90: null,
+    description: "Deep cleansing, herbal facial steam, gentle exfoliation, and a restorative botanical mask infused with aloe vera, sandalwood, and rose water.",
+    benefits: ["Deep pore cleansing", "Restores mountain hydration glow", "Soothes skin exposed to outdoor sunlight"],
+    oils: "Organic Rose Otto & Sandalwood Essence",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80",
+    popular: false
+  },
+  {
+    id: "couples-serenity",
+    name: "Couple's Hill Serenity Ritual",
+    category: "Couple Packages",
+    duration: "90 mins",
+    price: 4500,
+    price90: null,
+    description: "Side-by-side signature full body massage in our private dual therapy suite, followed by a warm herbal soak, rose petal foot wash, and organic herbal tea.",
+    benefits: ["Shared romantic rejuvenation", "Synchronized therapy in private suite", "Includes complimentary herbal tea & strawberry delight"],
+    oils: "Ylang-Ylang, Sandalwood & Sweet Orange",
+    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+    popular: true
+  }
+];

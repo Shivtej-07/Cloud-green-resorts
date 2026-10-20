@@ -1,0 +1,142 @@
+export const rooms = [
+  {
+    id: "deluxe-double-room",
+    slug: "deluxe-double-room",
+    name: "Deluxe Double Room",
+    category: "Double",
+    tag: "Best Value",
+    featured: true,
+    price: 1897,
+    originalPrice: 2499,
+    size: "240 sq.ft",
+    bedType: "King Bed",
+    occupancy: "2 Adults + 1 Child",
+    view: "Garden & Greenery View",
+    rating: 4.4,
+    reviewCount: 48,
+    description: "Our signature Deluxe Double Room combines warm wood accents, comfortable plush bedding, and crisp mountain air. Designed for couples and solo travelers looking for affordable luxury amidst the tranquility of Metgutad hills.",
+    overview: "Wake up to misty hill views and gentle birdsong. The Deluxe Double Room offers a restful sanctuary complete with an en-suite modern bath, tea/coffee maker, and free high-speed Wi-Fi.",
+    images: [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+    ],
+    amenities: [
+      "King Size Bed with 8-inch Mattress",
+      "Complimentary High-Speed Wi-Fi",
+      "32\" Smart LED TV with Cable",
+      "Electric Kettle with Tea & Coffee Kit",
+      "En-suite Bathroom with Hot Water 24/7",
+      "Complimentary Breakfast for 2",
+      "Daily Housekeeping",
+      "Pet-Friendly Policy"
+    ],
+    highlights: ["Starting at just ₹1,897", "Free Breakfast included", "King size bed", "Pet friendly"]
+  },
+  {
+    id: "premium-valley-view",
+    slug: "premium-valley-view",
+    name: "Premium Valley View Room",
+    category: "Valley View",
+    tag: "Most Popular",
+    featured: true,
+    price: 2699,
+    originalPrice: 3499,
+    size: "310 sq.ft",
+    bedType: "King Bed + Daybed",
+    occupancy: "2 Adults + 2 Children",
+    view: "Panoramic Sahyadri Valley & Cloud View",
+    rating: 4.6,
+    reviewCount: 39,
+    description: "Perched with sweeping views of the verdant Mahabaleshwar valley, this premium room features a private sit-out balcony where you can sip hot tea as clouds roll past your feet.",
+    overview: "Crafted for nature lovers, this room features expansive glass sliding doors leading to a private wooden balcony. Includes a premium orthopaedic mattress, artisan toiletries, and quiet hillside seclusion.",
+    images: [
+      "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80"
+    ],
+    amenities: [
+      "Private Valley-Facing Balcony",
+      "King Size Bed + Cozy Lounger",
+      "Complimentary High-Speed Wi-Fi",
+      "43\" 4K Smart TV with OTT Apps",
+      "Mini Fridge & Mineral Water",
+      "Herbal Bath Amenities & Rain Shower",
+      "Complimentary Hot Breakfast",
+      "In-room Dining Service"
+    ],
+    highlights: ["Private Valley Balcony", "Foggy Morning Views", "Smart TV with OTT", "Rain Shower"]
+  },
+  {
+    id: "mountain-view-family-suite",
+    slug: "mountain-view-family-suite",
+    name: "Mountain View Family Suite",
+    category: "Family",
+    tag: "Family Favorite",
+    featured: true,
+    price: 3799,
+    originalPrice: 4899,
+    size: "460 sq.ft",
+    bedType: "2 Queen Beds",
+    occupancy: "4 Adults + 2 Children",
+    view: "Mountain & Strawberry Farm View",
+    rating: 4.5,
+    reviewCount: 28,
+    description: "Spacious multi-bed suite built for families and friend groups. Offering ample living space, scenic hill views, and dual wardrobes so everyone stays in comfort without feeling cramped.",
+    overview: "Traveling with family has never been easier. Featuring two queen size beds, a separate sitting lounge, high speed Wi-Fi, and quick access to the children's outdoor play area and pool.",
+    images: [
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+    ],
+    amenities: [
+      "Two Queen Beds with Luxury Linens",
+      "Large Mountain-Facing Windows",
+      "Spacious Wardrobes & Luggage Racks",
+      "Complimentary High-Speed Wi-Fi",
+      "Complimentary Buffet Breakfast for 4",
+      "50\" Smart TV",
+      "Intercom & 24/7 Room Service",
+      "Direct Lawn & Pool Access"
+    ],
+    highlights: ["Sleeps up to 6 guests", "2 Queen Beds", "Garden & Pool Access", "Free Breakfast for all"]
+  },
+  {
+    id: "executive-cottage",
+    slug: "executive-cottage",
+    name: "Executive Garden Cottage",
+    category: "Cottage",
+    tag: "Exclusive",
+    featured: false,
+    price: 4499,
+    originalPrice: 5699,
+    size: "420 sq.ft",
+    bedType: "Super King Bed",
+    occupancy: "2 Adults + 1 Child",
+    view: "Private Lawns & Flora View",
+    rating: 4.7,
+    reviewCount: 19,
+    description: "Independent standalone cottage tucked away among lush native flora. Features exposed wooden beams, high vaulted ceilings, and a secluded private veranda for intimate relaxation.",
+    overview: "Enjoy the pinnacle of serenity with total privacy. The Executive Cottage includes a garden patio where private candlelight dinners can be arranged upon request.",
+    images: [
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+    ],
+    amenities: [
+      "Standalone Private Cottage with Veranda",
+      "Super King Bed with Feather Down Pillows",
+      "Dedicated Garden Seating Area",
+      "Luxury En-suite Bath with Premium Herbal Toiletries",
+      "Espresso & Tea Bar",
+      "Complimentary High-Speed Wi-Fi",
+      "Free Gourmet Breakfast",
+      "Express Check-in & Priority Spa Bookings"
+    ],
+    highlights: ["Standalone Cottage", "Private Veranda", "Espresso Bar", "Priority Spa Access"]
+  }
+];

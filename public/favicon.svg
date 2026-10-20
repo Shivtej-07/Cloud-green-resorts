@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="48" fill="#1F4D3A" />
+  <circle cx="50" cy="50" r="44" stroke="#C9A24B" stroke-width="1.5" stroke-dasharray="2 2" />
+  <!-- Hill Silhouettes -->
+  <path d="M18 68 C 30 45, 42 48, 55 68 Z" fill="#2E6950" opacity="0.8"/>
+  <path d="M38 68 C 50 38, 65 42, 82 68 Z" fill="#C9A24B" opacity="0.9"/>
+  <path d="M26 68 C 45 48, 55 52, 74 68 Z" fill="#1F4D3A"/>
+  <!-- Stylized Cloud / Sun -->
+  <circle cx="62" cy="35" r="7" fill="#C9A24B" />
+  <path d="M32 40 C 34 35, 42 35, 45 38 C 48 34, 56 36, 56 41 C 59 41, 62 44, 60 47 C 58 50, 32 50, 32 40 Z" fill="#FAF7F0" opacity="0.85"/>
+  <!-- Monogram or small leaf -->
+  <path d="M50 78 L50 64 M50 67 C48 65, 44 65, 44 67 C44 70, 50 71, 50 71 M50 65 C52 63, 56 63, 56 65 C56 68, 50 69, 50 69" stroke="#C9A24B" stroke-width="2" stroke-linecap="round"/>
+</svg>
