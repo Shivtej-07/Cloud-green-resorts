@@ -58,5 +58,9 @@ export const siteConfig = {
     "Free cancellation up to 48 hours before scheduled check-in.",
     "Government-issued photo ID required for all adult guests at check-in.",
     "Complimentary vegetarian breakfast served between 8:00 AM and 10:30 AM."
-  ]
+  ],
+  media: {
+    heroVideo: "https://res.cloudinary.com/dswtemx8x/video/upload/v1793090184/WhatsApp_Video_2026-10-27_at_1.38.26_PM_vsmfr8.mp4",
+    heroPoster: "https://res.cloudinary.com/dswtemx8x/video/upload/v1793090184/WhatsApp_Video_2026-10-27_at_1.38.26_PM_vsmfr8.jpg"
+  }
 };
