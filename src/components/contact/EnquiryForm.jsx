@@ -15,12 +15,12 @@ import {
   ShieldCheck, 
   Info 
 } from 'lucide-react';
-import { rooms } from '../../data/rooms';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
 import Button from '../common/Button';
 
 export default function EnquiryForm() {
+  const { rooms, siteConfig } = useData();
   const [searchParams] = useSearchParams();
   const [copied, setCopied] = useState(false);
   const [submittedWhatsApp, setSubmittedWhatsApp] = useState(false);

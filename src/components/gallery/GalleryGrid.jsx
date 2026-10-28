@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Maximize2 } from 'lucide-react';
-import { galleryCategories, galleryItems } from '../../data/gallery';
+import { useData } from '../../context/DataContext';
 import Lightbox from './Lightbox';
 
 export default function GalleryGrid({ initialCategory = "All", limit = null }) {
+  const { gallery: galleryItems, galleryCategories } = useData();
   const [activeCategory, setActiveCategory] = useState(initialCategory);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -6,14 +6,16 @@ import {
   X, 
   Phone, 
   Calendar, 
-  Globe 
+  Globe,
+  ShieldCheck
 } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
 import { useLanguage } from '../../context/LanguageContext';
 import Button from './Button';
 
 export default function Navbar() {
+  const { siteConfig } = useData();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isScrolled } = useScrollPosition();
   const location = useLocation();
@@ -101,7 +103,20 @@ export default function Navbar() {
             </div>
 
             {/* Right Action Buttons */}
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2.5">
+              <Link
+                to="/admin"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
+                  showSolidNav
+                    ? 'text-forest-900 border-forest-200 hover:bg-forest-50 hover:border-forest-300'
+                    : 'text-cream-100 border-white/30 hover:bg-white/20 backdrop-blur-sm'
+                }`}
+                title="Staff & Admin Control Panel"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-gold-400" />
+                <span>Admin</span>
+              </Link>
+
               <Button
                 to="/booking"
                 variant={showSolidNav ? "gold" : "gold"}
@@ -230,6 +245,15 @@ export default function Navbar() {
                 <Phone className="w-4 h-4 text-gold-400" />
                 <span>Call {siteConfig.contact.phoneDisplay}</span>
               </a>
+
+              <Link
+                to="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 py-2.5 rounded-full border border-gold-400/30 text-gold-400 hover:bg-gold-500/10 text-xs font-semibold transition-colors"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Admin &amp; Staff Login</span>
+              </Link>
 
               <p className="text-center text-[11px] text-cream-300/60 pt-2">
                 Panchgani - Mahabaleshwar Rd, Metgutad

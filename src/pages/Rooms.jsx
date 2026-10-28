@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { rooms } from '../data/rooms';
+import { useData } from '../context/DataContext';
 import SectionTitle from '../components/common/SectionTitle';
 import RoomCard from '../components/rooms/RoomCard';
 import RoomFilter from '../components/rooms/RoomFilter';
@@ -17,6 +17,7 @@ import {
 const roomCategories = ["All Rooms", "Double", "Valley View", "Family", "Cottage"];
 
 export default function Rooms() {
+  const { rooms } = useData();
   const [activeCategory, setActiveCategory] = useState("All Rooms");
 
   const filteredRooms = activeCategory === "All Rooms"

@@ -10,11 +10,12 @@ import {
   Heart, 
   Coffee 
 } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 
 export default function AboutPreview() {
+  const { siteConfig } = useData();
   const points = [
     "Perfect midpoint location on Panchgani-Mahabaleshwar Highway",
     "Surrounded by Metgutad strawberry farms and Sahyadri valleys",

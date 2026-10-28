@@ -15,7 +15,7 @@ import {
   Film,
   Image as ImageIcon
 } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 import Button from '../common/Button';
 import AvailabilityBar from './AvailabilityBar';
@@ -39,6 +39,7 @@ const heroSlides = [
 ];
 
 export default function Hero() {
+  const { siteConfig } = useData();
   const [mode, setMode] = useState('video'); // 'video' | 'slideshow'
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);

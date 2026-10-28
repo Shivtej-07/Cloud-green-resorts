@@ -11,10 +11,11 @@ import {
   Send,
   ExternalLink 
 } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 
 export default function Footer() {
+  const { siteConfig, rooms } = useData();
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
@@ -195,6 +196,7 @@ export default function Footer() {
             <Link to="/reviews" className="hover:text-cream-100 transition-colors">Guest Reviews</Link>
             <Link to="/contact" className="hover:text-cream-100 transition-colors">Map &amp; Directions</Link>
             <Link to="/booking" className="hover:text-cream-100 transition-colors">Direct Booking Enquiry</Link>
+            <Link to="/admin" className="text-gold-400/70 hover:text-gold-300 font-medium transition-colors">Admin Portal</Link>
           </div>
         </div>
       </div>

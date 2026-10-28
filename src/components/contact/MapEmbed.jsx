@@ -1,8 +1,9 @@
 import React from 'react';
 import { MapPin, Navigation, Car, ExternalLink, Bus } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 
 export default function MapEmbed() {
+  const { siteConfig } = useData();
   const googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(siteConfig.address.full)}`;
 
   return (

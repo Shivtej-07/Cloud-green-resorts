@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, Users, BedDouble, Search, ArrowRight } from 'lucide-react';
-import { rooms } from '../../data/rooms';
+import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
 import Button from '../common/Button';
 
 export default function AvailabilityBar({ className = '' }) {
+  const { rooms } = useData();
   const navigate = useNavigate();
   const { t } = useLanguage();
 

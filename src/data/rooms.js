@@ -87,7 +87,7 @@ export const rooms = [
     description: "Spacious multi-bed suite built for families and friend groups. Offering ample living space, scenic hill views, and dual wardrobes so everyone stays in comfort without feeling cramped.",
     overview: "Traveling with family has never been easier. Featuring two queen size beds, a separate sitting lounge, high speed Wi-Fi, and quick access to the children's outdoor play area and pool.",
     images: [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
+      "https://res.cloudinary.com/dswtemx8x/image/upload/v1793172435/cloudgreen/rooms/yakrhlzdqszhaobtm2bv.jpg",
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"

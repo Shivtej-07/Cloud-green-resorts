@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Phone, Sparkles, MapPin, CheckCircle } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 import Button from '../common/Button';
 
 export default function CTABanner() {
+  const { siteConfig } = useData();
   return (
     <section className="py-20 lg:py-24 bg-forest-950 relative overflow-hidden text-cream-100">
       

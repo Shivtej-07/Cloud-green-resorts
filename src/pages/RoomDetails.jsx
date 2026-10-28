@@ -16,13 +16,13 @@ import {
   Coffee, 
   ChevronRight 
 } from 'lucide-react';
-import { rooms } from '../data/rooms';
-import { siteConfig } from '../data/siteConfig';
+import { useData } from '../context/DataContext';
 import { buildRoomEnquiryLink } from '../utils/whatsapp';
 import Button from '../components/common/Button';
 
 export default function RoomDetails() {
   const { id } = useParams();
+  const { rooms, siteConfig } = useData();
   const room = rooms.find(r => r.slug === id || r.id === id);
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);

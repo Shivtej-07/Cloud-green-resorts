@@ -85,7 +85,7 @@ export const galleryItems = [
     id: 11,
     title: "Spacious Family Suite Living Area",
     category: "Rooms",
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80",
+    image: "https://res.cloudinary.com/dswtemx8x/image/upload/v1793172435/cloudgreen/rooms/yakrhlzdqszhaobtm2bv.jpg",
     caption: "Bright, airy family suite designed for effortless relaxation with loved ones.",
     aspect: "square"
   },

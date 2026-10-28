@@ -1,11 +1,12 @@
 import React from 'react';
-import { rooms } from '../../data/rooms';
+import { useData } from '../../context/DataContext';
 import SectionTitle from '../common/SectionTitle';
 import RoomCard from '../rooms/RoomCard';
 import Button from '../common/Button';
 import { ArrowRight } from 'lucide-react';
 
 export default function FeaturedRooms() {
+  const { rooms } = useData();
   const featuredRooms = rooms.slice(0, 3);
 
   return (

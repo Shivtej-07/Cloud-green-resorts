@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, X } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { useData } from '../../context/DataContext';
 
 export default function FloatingButtons() {
+  const { siteConfig } = useData();
   const [showTooltip, setShowTooltip] = useState(true);
 
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hello Cloudgreen Resort! I would like to inquire about room booking and tariffs.")}`;

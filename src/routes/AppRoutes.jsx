@@ -12,11 +12,17 @@ import Attractions from '../pages/Attractions';
 import Reviews from '../pages/Reviews';
 import Contact from '../pages/Contact';
 import BookingEnquiry from '../pages/BookingEnquiry';
+import Admin from '../pages/Admin';
 import NotFound from '../pages/NotFound';
 
 export default function AppRoutes() {
   return (
     <Routes>
+      {/* Admin Control Panel */}
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/*" element={<Admin />} />
+
+      {/* Public Pages */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
