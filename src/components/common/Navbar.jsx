@@ -6,10 +6,7 @@ import {
   X, 
   Phone, 
   Calendar, 
-  MapPin, 
-  Star, 
-  Globe, 
-  ChevronDown 
+  Globe 
 } from 'lucide-react';
 import { siteConfig } from '../../data/siteConfig';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
@@ -21,7 +18,6 @@ export default function Navbar() {
   const { isScrolled } = useScrollPosition();
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
   // Close mobile menu whenever route changes
   useEffect(() => {
@@ -53,78 +49,6 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
-        {/* Top announcement bar - hidden on small mobile, visible on tablet+ */}
-        <div className={`transition-all duration-300 text-xs py-1.5 px-4 md:px-8 flex items-center justify-between border-b ${
-          showSolidNav 
-            ? 'bg-forest-950 text-cream-200 border-forest-900/60' 
-            : 'bg-black/40 backdrop-blur-sm text-cream-100 border-white/10'
-        }`}>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="flex items-center gap-1 text-gold-400 font-medium">
-              <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
-              <span>{siteConfig.rating} Google ({siteConfig.reviewCount} reviews)</span>
-            </span>
-            <span className="hidden md:inline-block text-white/30">•</span>
-            <span className="hidden md:flex items-center gap-1 text-cream-300/90">
-              <MapPin className="w-3.5 h-3.5 text-sage-400" />
-              <span>Metgutad, Panchgani - Mahabaleshwar Rd</span>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            {/* Phone link */}
-            <a
-              href={`tel:${siteConfig.contact.phone}`}
-              className="flex items-center gap-1.5 font-medium text-gold-400 hover:text-gold-300 transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span className="tracking-wider">{siteConfig.contact.phoneDisplay}</span>
-            </a>
-
-            <span className="text-white/30">•</span>
-
-            {/* Language Switcher Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1 text-cream-200 hover:text-white transition-colors py-0.5 px-2 rounded-md hover:bg-white/10"
-                aria-label="Select Language"
-              >
-                <Globe className="w-3.5 h-3.5 text-sage-300" />
-                <span className="uppercase font-semibold text-[11px]">{language}</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
-              </button>
-
-              <AnimatePresence>
-                {langDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 5 }}
-                    className="absolute right-0 mt-1 w-28 bg-white text-slate-800 rounded-lg shadow-xl border border-slate-100 py-1 z-50 overflow-hidden"
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setLangDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-3 py-1.5 text-xs flex items-center justify-between hover:bg-cream-200 transition-colors ${
-                          language === lang.code ? 'font-bold text-forest-800 bg-sage-50' : 'text-slate-600'
-                        }`}
-                      >
-                        <span>{lang.label}</span>
-                        {language === lang.code && <span className="w-1.5 h-1.5 rounded-full bg-forest-800"></span>}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-
         {/* Main Navigation Bar */}
         <nav
           className={`px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
