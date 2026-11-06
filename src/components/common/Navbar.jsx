@@ -146,27 +146,42 @@ export default function Navbar() {
                 {t.nav.about}
               </NavLink>
 
-              {/* 3. Destinations ▾ (Styled exactly like other navbar buttons, MapPin logo removed, no heavy background) */}
-              <div className="relative" ref={dropdownRef}>
-                <button
-                  type="button"
-                  onClick={() => setDestinationsOpen(!destinationsOpen)}
-                  className={`flex items-center gap-1 px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-medium rounded-full transition-all duration-200 ${
-                    destinationsOpen
-                      ? showSolidNav
-                        ? 'bg-forest-800 text-white font-semibold shadow-sm'
-                        : 'bg-white/20 text-white font-semibold backdrop-blur-md border border-white/30'
-                      : showSolidNav
-                      ? 'text-slate-700 hover:text-forest-900 hover:bg-forest-50'
-                      : 'text-cream-100 hover:text-white hover:bg-white/10'
-                  }`}
-                  aria-expanded={destinationsOpen}
-                  aria-haspopup="true"
-                  aria-label="Toggle Our Destinations menu"
+              {/* 3. Destinations (Direct Link to /destinations with Hover/Toggle Dropdown) */}
+              <div 
+                className="relative" 
+                ref={dropdownRef}
+                onMouseEnter={() => setDestinationsOpen(true)}
+                onMouseLeave={() => setDestinationsOpen(false)}
+              >
+                <NavLink
+                  to="/destinations"
+                  onClick={() => setDestinationsOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center gap-1 px-2.5 xl:px-3 py-1.5 text-xs xl:text-sm font-medium rounded-full transition-all duration-200 ${
+                      isActive || destinationsOpen
+                        ? showSolidNav
+                          ? 'bg-forest-800 text-white font-semibold shadow-sm'
+                          : 'bg-white/20 text-white font-semibold backdrop-blur-md border border-white/30'
+                        : showSolidNav
+                        ? 'text-slate-700 hover:text-forest-900 hover:bg-forest-50'
+                        : 'text-cream-100 hover:text-white hover:bg-white/10'
+                    }`
+                  }
                 >
                   <span>Destinations</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${destinationsOpen ? 'rotate-180' : ''}`} />
-                </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setDestinationsOpen(!destinationsOpen);
+                    }}
+                    className="p-0.5 hover:text-gold-400 focus:outline-none cursor-pointer"
+                    aria-label="Toggle destinations dropdown"
+                  >
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${destinationsOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                </NavLink>
 
                 {/* Destinations Popover Menu */}
                 <AnimatePresence>
@@ -341,16 +356,21 @@ export default function Navbar() {
 
             {/* 3. OUR DESTINATIONS Section on Mobile */}
             <div className="py-4 border-y border-white/10">
-              <div 
-                className="flex items-center justify-between cursor-pointer py-1"
-                onClick={() => setMobileDestinationsExpanded(!mobileDestinationsExpanded)}
-              >
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between py-1">
+                <Link
+                  to="/destinations"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 hover:text-gold-400 transition-colors"
+                >
                   <span className="text-xs font-bold tracking-widest uppercase text-white">
                     {destinationsSummary.title}
                   </span>
-                </div>
-                <div className="flex items-center gap-1.5">
+                  <span className="text-xs text-gold-400">→</span>
+                </Link>
+                <div 
+                  className="flex items-center gap-1.5 cursor-pointer"
+                  onClick={() => setMobileDestinationsExpanded(!mobileDestinationsExpanded)}
+                >
                   <span className="text-[11px] font-semibold text-teal-300 bg-teal-900/60 border border-teal-500/40 px-2 py-0.5 rounded-full">
                     {destinationsSummary.badgeText}
                   </span>
@@ -361,12 +381,11 @@ export default function Navbar() {
               {mobileDestinationsExpanded && (
                 <div className="mt-3 space-y-2">
                   {destinations.map((item) => (
-                    <div
+                    <Link
                       key={item.id}
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                      }}
-                      className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-2.5 flex items-center gap-3 transition-colors"
+                      to={`/destinations/${item.id}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-2.5 flex items-center gap-3 transition-colors block"
                     >
                       {/* Icon */}
                       <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 p-1.5 shrink-0 flex items-center justify-center">
@@ -390,14 +409,10 @@ export default function Navbar() {
                         </p>
                       </div>
 
-                      <Link
-                        to={item.isPrimaryResort ? "/rooms" : `/booking?property=${item.id}`}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="text-[10px] font-bold text-teal-300 hover:text-white px-2 py-1 rounded-md bg-teal-800/40 border border-teal-500/30 shrink-0"
-                      >
-                        Book
-                      </Link>
-                    </div>
+                      <span className="text-[10px] font-bold text-gold-400 group-hover:text-gold-300 px-2 py-1 rounded-md bg-white/5 border border-white/10 shrink-0">
+                        Explore →
+                      </span>
+                    </Link>
                   ))}
 
                   <div className="pt-2 text-center">

@@ -13,6 +13,7 @@ import {
 import { siteConfig } from '../data/siteConfig';
 import ContactForm from '../components/contact/ContactForm';
 import MapEmbed from '../components/contact/MapEmbed';
+import WhatsAppIcon from '../components/common/WhatsAppIcon';
 
 const faqs = [
   {
@@ -90,8 +91,8 @@ export default function Contact() {
 
             {/* WhatsApp */}
             <div className="bg-white rounded-3xl p-6 shadow-soft border border-slate-200/80">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mb-4">
-                <MessageCircle className="w-6 h-6" />
+              <div className="w-12 h-12 rounded-2xl bg-[#25D366] text-white flex items-center justify-center mb-4 shadow-sm">
+                <WhatsAppIcon className="w-6 h-6" />
               </div>
               <h3 className="font-serif text-lg font-bold text-forest-950">WhatsApp Chat</h3>
               <p className="text-xs text-slate-500 mt-1">Instant photo sharing &amp; tariffs</p>
@@ -99,9 +100,10 @@ export default function Contact() {
                 href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 block font-bold text-emerald-700 text-sm hover:underline"
+                className="mt-3 block font-bold text-emerald-700 text-sm hover:underline flex items-center gap-1.5"
               >
-                Message on WhatsApp →
+                <span>Message on WhatsApp</span>
+                <span>→</span>
               </a>
             </div>
 

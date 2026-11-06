@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { buildRoomEnquiryLink } from '../utils/whatsapp';
+import WhatsAppIcon from '../components/common/WhatsAppIcon';
 import Button from '../components/common/Button';
 
 export default function RoomDetails() {
@@ -244,7 +245,7 @@ export default function RoomDetails() {
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 px-4 rounded-full text-sm font-semibold transition-colors shadow-md"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <WhatsAppIcon className="w-4 h-4" />
                     <span>Instant WhatsApp Inquiry</span>
                   </a>
 

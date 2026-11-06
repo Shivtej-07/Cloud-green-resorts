@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { buildRoomEnquiryLink } from '../../utils/whatsapp';
 import Button from '../common/Button';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 export default function RoomCard({ room }) {
   const whatsappUrl = buildRoomEnquiryLink(room.name, room.price);
@@ -128,11 +129,11 @@ export default function RoomCard({ room }) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
+              className="p-2.5 rounded-full bg-emerald-50 text-emerald-700 hover:bg-[#25D366] hover:text-white border border-emerald-200 transition-colors"
               title="Quick WhatsApp Enquiry"
               aria-label={`Enquire on WhatsApp about ${room.name}`}
             >
-              <MessageCircle className="w-4 h-4" />
+              <WhatsAppIcon className="w-4 h-4" />
             </a>
 
             <Button

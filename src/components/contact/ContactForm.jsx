@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, MessageCircle, AlertCircle, Phone, Mail, User } from 'lucide-react';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
 import Button from '../common/Button';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -62,7 +63,7 @@ export default function ContactForm() {
                 onClick={handleWhatsAppForward}
                 className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-md transition-colors"
               >
-                <MessageCircle className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
                 <span>Forward Message on WhatsApp</span>
               </button>
 

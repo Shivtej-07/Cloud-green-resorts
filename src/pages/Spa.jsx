@@ -17,6 +17,7 @@ import { siteConfig } from '../data/siteConfig';
 import { buildSpaEnquiryLink } from '../utils/whatsapp';
 import SectionTitle from '../components/common/SectionTitle';
 import Button from '../components/common/Button';
+import WhatsAppIcon from '../components/common/WhatsAppIcon';
 
 export default function Spa() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -165,9 +166,9 @@ export default function Spa() {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-xs font-bold transition-colors"
+                        className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full text-xs font-bold transition-colors shadow-sm"
                       >
-                        <MessageCircle className="w-3.5 h-3.5" />
+                        <WhatsAppIcon className="w-3.5 h-3.5" />
                         <span>Book Session</span>
                       </a>
                     </div>

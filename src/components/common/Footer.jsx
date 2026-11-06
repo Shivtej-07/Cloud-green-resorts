@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import { useLanguage } from '../../context/LanguageContext';
+import WhatsAppIcon from './WhatsAppIcon';
 
 export default function Footer() {
   const { siteConfig, rooms } = useData();
@@ -180,10 +181,11 @@ export default function Footer() {
                   href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
                 >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                   <span>Chat on WhatsApp</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 text-cream-300/60" />
                 </a>
               </div>
 

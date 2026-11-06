@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, X } from 'lucide-react';
+import { Phone, X } from 'lucide-react';
 import { useData } from '../../context/DataContext';
+import WhatsAppIcon from './WhatsAppIcon';
 
 export default function FloatingButtons() {
   const { siteConfig } = useData();
@@ -59,7 +60,7 @@ export default function FloatingButtons() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
           </span>
-          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-white/20" />
+          <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-sm" />
         </motion.a>
       </div>
     </div>

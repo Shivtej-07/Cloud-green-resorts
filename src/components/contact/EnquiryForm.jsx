@@ -18,6 +18,7 @@ import {
 import { useData } from '../../context/DataContext';
 import { destinations } from '../../data/destinations';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
+import WhatsAppIcon from '../common/WhatsAppIcon';
 import Button from '../common/Button';
 
 export default function EnquiryForm() {
@@ -65,8 +66,9 @@ export default function EnquiryForm() {
   const roomsCount = watch('roomsCount') || 1;
 
   // Selected room object (for Mahabaleshwar resort rooms)
+  const currentCat = currentProperty.roomCategories?.find(c => c.id === selectedRoomId || c.name === selectedRoomId);
   const currentRoom = rooms.find(r => r.id === selectedRoomId) || rooms[0];
-  const unitPrice = isPrimaryResort ? currentRoom.price : currentProperty.startingPrice;
+  const unitPrice = currentCat ? currentCat.pricing.withBreakfast : (isPrimaryResort ? currentRoom.price : currentProperty.startingPrice);
 
   // Calculate estimated nights and price
   const calculateStay = () => {
@@ -222,11 +224,19 @@ export default function EnquiryForm() {
                 {...register("roomType")}
                 className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-medium bg-cream-50 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
               >
-                {rooms.map((room) => (
-                  <option key={room.id} value={room.id}>
-                    {room.name} — ₹{room.price.toLocaleString()}/night ({room.occupancy})
-                  </option>
-                ))}
+                {currentProperty.roomCategories ? (
+                  currentProperty.roomCategories.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name} — From ₹{cat.pricing.roomOnly.toLocaleString()}/night ({cat.viewShort || cat.view})
+                    </option>
+                  ))
+                ) : (
+                  rooms.map((room) => (
+                    <option key={room.id} value={room.name}>
+                      {room.name} — ₹{room.price.toLocaleString()}/night ({room.occupancy})
+                    </option>
+                  ))
+                )}
               </select>
             </div>
 
@@ -328,7 +338,7 @@ export default function EnquiryForm() {
             variant="gold"
             size="lg"
             className="w-full sm:flex-1 justify-center py-4 text-forest-950 font-bold shadow-lg"
-            icon={MessageCircle}
+            icon={WhatsAppIcon}
           >
             Send Booking Inquiry on WhatsApp
           </Button>

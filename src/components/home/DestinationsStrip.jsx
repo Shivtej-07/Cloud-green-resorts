@@ -50,8 +50,8 @@ export default function DestinationsStrip() {
               transition={{ duration: 0.3, delay: idx * 0.08 }}
             >
               <Link
-                to={prop.isPrimaryResort ? "/rooms" : `/destinations#${prop.id}`}
-                className="group flex flex-col h-full bg-white rounded-3xl p-5 border border-slate-200/80 hover:border-teal-500/50 hover:shadow-soft-lg transition-all duration-300"
+                to={`/destinations/${prop.id}`}
+                className="group flex flex-col h-full bg-white rounded-3xl p-5 border border-slate-200/80 hover:border-gold-500/50 hover:shadow-soft-lg transition-all duration-300"
               >
                 {/* Top: Icon & Badge */}
                 <div className="flex items-center justify-between mb-4">
