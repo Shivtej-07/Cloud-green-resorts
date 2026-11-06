@@ -28,7 +28,7 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <div className="relative h-screen min-h-[100dvh] w-full flex flex-col justify-between pt-28 pb-8 overflow-hidden bg-forest-950">
+    <div className="relative min-h-[72vh] sm:min-h-[80vh] lg:h-screen lg:min-h-[100dvh] w-full flex flex-col justify-between pt-20 sm:pt-28 pb-8 lg:pb-12 overflow-hidden bg-forest-950">
       
       {/* Background Media Container - Full Screen Cinematic */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -74,7 +74,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-4 shadow-lg"
+          className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-black/40 backdrop-blur-md border border-gold-500/30 text-gold-400 text-[10px] sm:text-xs font-semibold uppercase tracking-widest mb-2.5 sm:mb-4 shadow-lg"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
           <span>Reveridge Hospitality</span>
@@ -85,7 +85,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.25 }}
-          className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.08] max-w-5xl mx-auto drop-shadow-xl"
+          className="font-serif text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.1] max-w-5xl mx-auto drop-shadow-xl"
         >
           {t.tagline}
         </motion.h1>
@@ -95,19 +95,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-4 text-cream-100 font-medium text-xs sm:text-sm md:text-base tracking-[0.22em] uppercase drop-shadow-md max-w-2xl"
+          className="mt-2.5 sm:mt-4 text-cream-100 font-medium text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase drop-shadow-md max-w-2xl"
         >
           Boutique Nature Escapes Across Maharashtra
         </motion.div>
 
       </div>
 
-      {/* Elegant Luxury Scroll Indicator */}
+      {/* Elegant Luxury Scroll Indicator - Hidden on mobile, shown on desktop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.7 }}
-        className="relative z-10 pb-6 flex flex-col items-center justify-center pointer-events-none"
+        className="relative z-10 pb-4 hidden lg:flex flex-col items-center justify-center pointer-events-none"
       >
         <span className="text-[10px] tracking-widest uppercase text-cream-300/80 mb-2 font-medium drop-shadow-sm">
           Scroll to Explore

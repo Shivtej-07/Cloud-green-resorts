@@ -35,17 +35,17 @@ export default function AvailabilityBar({ className = '' }) {
     <div className={`w-full max-w-5xl mx-auto ${className}`}>
       <form
         onSubmit={handleSubmit}
-        className="glass-card shadow-2xl rounded-3xl p-4 sm:p-6 border border-white/60 bg-white/90 backdrop-blur-xl transition-all hover:border-gold-400/40"
+        className="glass-card shadow-2xl rounded-3xl p-3.5 sm:p-6 border border-white/60 bg-white/95 backdrop-blur-xl transition-all hover:border-gold-400/40"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-center">
           
           {/* Check-in Date */}
-          <div className="flex items-center gap-3 bg-cream-100/90 hover:bg-cream-100 p-3 rounded-2xl border border-slate-200/80 transition-colors">
-            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800">
-              <Calendar className="w-5 h-5" />
+          <div className="flex items-center gap-2.5 sm:gap-3 bg-cream-100/90 hover:bg-cream-100 p-2.5 sm:p-3 rounded-2xl border border-slate-200/80 transition-colors">
+            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800 shrink-0">
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="flex-1">
-              <label htmlFor="hero-check-in" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            <div className="flex-1 min-w-0">
+              <label htmlFor="hero-check-in" className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                 {t.checkIn}
               </label>
               <input
@@ -61,19 +61,19 @@ export default function AvailabilityBar({ className = '' }) {
                     setCheckOut(formatDate(next));
                   }
                 }}
-                className="w-full bg-transparent font-medium text-slate-800 text-sm focus:outline-none cursor-pointer"
+                className="w-full bg-transparent font-medium text-slate-800 text-xs sm:text-sm focus:outline-none cursor-pointer"
                 required
               />
             </div>
           </div>
 
           {/* Check-out Date */}
-          <div className="flex items-center gap-3 bg-cream-100/90 hover:bg-cream-100 p-3 rounded-2xl border border-slate-200/80 transition-colors">
-            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800">
-              <Calendar className="w-5 h-5" />
+          <div className="flex items-center gap-2.5 sm:gap-3 bg-cream-100/90 hover:bg-cream-100 p-2.5 sm:p-3 rounded-2xl border border-slate-200/80 transition-colors">
+            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800 shrink-0">
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="flex-1">
-              <label htmlFor="hero-check-out" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            <div className="flex-1 min-w-0">
+              <label htmlFor="hero-check-out" className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                 {t.checkOut}
               </label>
               <input
@@ -82,26 +82,26 @@ export default function AvailabilityBar({ className = '' }) {
                 min={checkIn || formatDate(tomorrow)}
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="w-full bg-transparent font-medium text-slate-800 text-sm focus:outline-none cursor-pointer"
+                className="w-full bg-transparent font-medium text-slate-800 text-xs sm:text-sm focus:outline-none cursor-pointer"
                 required
               />
             </div>
           </div>
 
           {/* Guests */}
-          <div className="flex items-center gap-3 bg-cream-100/90 hover:bg-cream-100 p-3 rounded-2xl border border-slate-200/80 transition-colors">
-            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800">
-              <Users className="w-5 h-5" />
+          <div className="flex items-center gap-2.5 sm:gap-3 bg-cream-100/90 hover:bg-cream-100 p-2.5 sm:p-3 rounded-2xl border border-slate-200/80 transition-colors">
+            <div className="p-2 rounded-xl bg-forest-800/10 text-forest-800 shrink-0">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="flex-1">
-              <label htmlFor="hero-guests" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            <div className="flex-1 min-w-0">
+              <label htmlFor="hero-guests" className="block text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                 {t.guests}
               </label>
               <select
                 id="hero-guests"
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
-                className="w-full bg-transparent font-medium text-slate-800 text-sm focus:outline-none cursor-pointer"
+                className="w-full bg-transparent font-medium text-slate-800 text-xs sm:text-sm focus:outline-none cursor-pointer"
               >
                 <option value="1 Adult">1 Adult</option>
                 <option value="2 Adults">2 Adults</option>
@@ -119,7 +119,7 @@ export default function AvailabilityBar({ className = '' }) {
               type="submit"
               variant="gold"
               size="lg"
-              className="w-full justify-center shadow-lg hover:shadow-xl font-bold text-forest-950 py-3.5"
+              className="w-full justify-center shadow-lg hover:shadow-xl font-bold text-forest-950 py-3 sm:py-3.5 text-xs sm:text-sm"
               icon={Search}
               iconPosition="left"
             >
@@ -130,12 +130,12 @@ export default function AvailabilityBar({ className = '' }) {
         </div>
 
         {/* Micro note underneath */}
-        <div className="mt-3 pt-3 border-t border-slate-200/50 flex flex-wrap items-center justify-between text-[11px] text-slate-600 px-1">
-          <div className="flex items-center gap-3">
+        <div className="mt-3 pt-2.5 border-t border-slate-200/50 flex flex-col sm:flex-row items-center sm:justify-between gap-1.5 text-[10px] sm:text-[11px] text-slate-600 px-1 text-center sm:text-left">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center sm:justify-start">
             <span className="font-semibold text-forest-800">✓ Best Rate Guarantee</span>
-            <span className="hidden sm:inline text-slate-300">•</span>
-            <span className="hidden sm:inline">No Hidden Fees</span>
-            <span className="hidden sm:inline text-slate-300">•</span>
+            <span className="text-slate-300">•</span>
+            <span>No Hidden Fees</span>
+            <span className="text-slate-300">•</span>
             <span>Free Cancellation (48 hrs)</span>
           </div>
           <span className="text-forest-700 font-medium">Boutique Escapes Across Maharashtra</span>

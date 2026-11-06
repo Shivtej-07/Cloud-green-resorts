@@ -32,7 +32,7 @@ export default function Home() {
         <Hero />
 
         {/* Check In / Check Out Availability Bar - Middle Section between Home and About Us */}
-        <div className="relative z-30 -mt-14 sm:-mt-16 md:-mt-20 px-4 sm:px-6 lg:px-8">
+        <div className="relative z-30 -mt-10 sm:-mt-16 md:-mt-20 px-3 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <AvailabilityBar />
         </div>
 

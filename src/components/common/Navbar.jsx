@@ -88,20 +88,20 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
             
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
-              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-gold-500/50 shadow-md transition-transform group-hover:scale-105 shrink-0 bg-forest-950">
+            <Link to="/" className="flex items-center gap-2 group shrink-0 min-w-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-gold-500/50 shadow-md transition-transform group-hover:scale-105 shrink-0 bg-forest-950">
                 <img src="/reveridge-logo.jpg" alt="Reveridge Logo" className="w-full h-full object-cover" />
               </div>
-              <div className="flex flex-col">
-                <span className={`font-serif text-base sm:text-xl md:text-2xl font-bold tracking-tight leading-none ${
+              <div className="flex flex-col min-w-0">
+                <span className={`font-serif text-lg sm:text-xl md:text-2xl font-bold tracking-tight leading-none ${
                   showSolidNav ? 'text-forest-900' : 'text-white drop-shadow-sm'
                 }`}>
                   REVERIDGE
                 </span>
-                <span className={`text-[8px] sm:text-[10px] tracking-widest font-semibold uppercase mt-0.5 ${
+                <span className={`text-[7.5px] sm:text-[9.5px] tracking-wider font-semibold uppercase mt-0.5 truncate max-w-[150px] sm:max-w-none ${
                   showSolidNav ? 'text-gold-600' : 'text-gold-400'
                 }`}>
-                  Boutique Nature Escapes • Maharashtra
+                  Boutique Nature Escapes
                 </span>
               </div>
             </Link>
@@ -226,31 +226,13 @@ export default function Navbar() {
               </Button>
             </div>
 
-            {/* Mobile Actions & Menu Hamburger Button */}
-            <div className="flex items-center gap-1.5 lg:hidden">
-              {/* Quick Destinations Button on Mobile */}
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(true);
-                  setMobileDestinationsExpanded(true);
-                }}
-                className={`flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-full font-semibold border transition-all ${
-                  showSolidNav 
-                    ? 'text-teal-900 border-teal-300/80 bg-teal-50/90' 
-                    : 'text-white border-white/30 bg-white/20 backdrop-blur-sm'
-                }`}
-                aria-label="View Destinations"
-              >
-                <MapPin className="w-3.5 h-3.5 text-teal-400" />
-                <span className="text-[11px]">Destinations</span>
-              </button>
-
+            {/* Mobile Actions: Book CTA + Menu Hamburger Button */}
+            <div className="flex items-center gap-2 lg:hidden shrink-0">
               <Button
                 to="/booking"
                 variant="gold"
                 size="sm"
-                className="text-xs px-2.5 py-1.5 sm:hidden"
+                className="text-xs px-3 py-1.5 font-bold shadow-sm"
               >
                 Book
               </Button>
