@@ -14,7 +14,7 @@ import Button from '../common/Button';
 
 export default function AboutPreview() {
   return (
-    <section className="pt-24 sm:pt-28 lg:pt-32 pb-20 lg:pb-28 bg-cream-200 relative overflow-hidden">
+    <section className="pt-4 sm:pt-6 lg:pt-28 pb-20 lg:pb-28 bg-cream-200 relative overflow-hidden">
       {/* Subtle ambient blur */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
