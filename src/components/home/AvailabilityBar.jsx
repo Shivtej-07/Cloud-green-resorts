@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Users, BedDouble, Search, ArrowRight } from 'lucide-react';
-import { useData } from '../../context/DataContext';
+import { Calendar, Users, Search } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import Button from '../common/Button';
 
 export default function AvailabilityBar({ className = '' }) {
-  const { rooms } = useData();
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -22,15 +20,13 @@ export default function AvailabilityBar({ className = '' }) {
   const [checkIn, setCheckIn] = useState(formatDate(tomorrow));
   const [checkOut, setCheckOut] = useState(formatDate(dayAfter));
   const [guests, setGuests] = useState("2 Adults");
-  const [roomType, setRoomType] = useState("all");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = new URLSearchParams({
       checkIn,
       checkOut,
-      guests,
-      roomType
+      guests
     });
     navigate(`/booking?${params.toString()}`);
   };
@@ -57,7 +53,14 @@ export default function AvailabilityBar({ className = '' }) {
                 type="date"
                 min={formatDate(today)}
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
+                onChange={(e) => {
+                  setCheckIn(e.target.value);
+                  if (e.target.value >= checkOut) {
+                    const next = new Date(e.target.value);
+                    next.setDate(next.getDate() + 1);
+                    setCheckOut(formatDate(next));
+                  }
+                }}
                 className="w-full bg-transparent font-medium text-slate-800 text-sm focus:outline-none cursor-pointer"
                 required
               />
@@ -135,7 +138,7 @@ export default function AvailabilityBar({ className = '' }) {
             <span className="hidden sm:inline text-slate-300">•</span>
             <span>Free Cancellation (48 hrs)</span>
           </div>
-          <span className="text-forest-700 font-medium">Starting ₹1,897 / night</span>
+          <span className="text-forest-700 font-medium">Boutique Escapes Across Maharashtra</span>
         </div>
       </form>
     </div>

@@ -30,20 +30,20 @@ export default function Footer() {
           {/* Col 1: Brand Info & Rating */}
           <div className="lg:col-span-2 space-y-5">
             <Link to="/" className="flex items-center gap-3 group inline-flex">
-              <div className="w-12 h-12 rounded-2xl bg-forest-800 border border-gold-500/40 p-2 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
-                <img src="/favicon.svg" alt="Cloudgreen Logo" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 rounded-2xl overflow-hidden border border-gold-500/50 shadow-lg transition-transform group-hover:scale-105 shrink-0 bg-forest-950">
+                <img src="/reveridge-logo.jpg" alt="Reveridge Logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <h3 className="font-serif text-2xl font-bold text-white tracking-wide">CLOUDGREEN</h3>
+                <h3 className="font-serif text-2xl font-bold text-white tracking-wide">REVERIDGE</h3>
                 <p className="text-xs text-gold-400 font-semibold tracking-widest uppercase">
-                  Resort &amp; Spa • Mahabaleshwar
+                  Boutique Nature Escapes • Maharashtra
                 </p>
-                <p className="text-[11px] text-cream-300/70">क्लाउडग्रीन रिसॉर्ट &amp; स्पा</p>
+                <p className="text-[11px] text-cream-300/70">रेवरिज बुटीक एस्केप्स</p>
               </div>
             </Link>
 
             <p className="text-sm text-cream-300/80 leading-relaxed max-w-md">
-              A serene 2-star boutique hill-station haven positioned on the scenic ridge between Panchgani and Mahabaleshwar. Surrounded by lush Metgutad strawberry fields, misty pine breeze, and sweeping Sahyadri vistas.
+              A curated collection of boutique nature escapes across Maharashtra — spanning mountains, forests, and coastlines across Mahabaleshwar, Lingmala, Matheran, and Dapoli. Elevation in every sense.
             </p>
 
             {/* Google Rating Badge */}
@@ -84,6 +84,12 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link to="/" className="text-cream-300/80 hover:text-gold-400 transition-colors">Home</Link>
+              </li>
+              <li>
+                <Link to="/destinations" className="text-teal-300 hover:text-teal-200 font-semibold flex items-center gap-1.5 transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                  <span>Our 5 Destinations</span>
+                </Link>
               </li>
               <li>
                 <Link to="/about" className="text-cream-300/80 hover:text-gold-400 transition-colors">About Our Resort</Link>
@@ -192,6 +198,7 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-300/60 gap-4">
           <p>© {currentYear} {siteConfig.name}. All rights reserved. Metgutad, Mahabaleshwar–Panchgani, Maharashtra.</p>
           <div className="flex items-center gap-6">
+            <Link to="/destinations" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors">Our Destinations</Link>
             <Link to="/about" className="hover:text-cream-100 transition-colors">About Us</Link>
             <Link to="/reviews" className="hover:text-cream-100 transition-colors">Guest Reviews</Link>
             <Link to="/contact" className="hover:text-cream-100 transition-colors">Map &amp; Directions</Link>

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import SectionTitle from '../components/common/SectionTitle';
 import Button from '../components/common/Button';
+import BrandPhilosophy from '../components/common/BrandPhilosophy';
 import { siteConfig } from '../data/siteConfig';
 
 export default function About() {
@@ -46,8 +47,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Us | Cloudgreen Resort &amp; Spa Mahabaleshwar–Panchgani</title>
-        <meta name="description" content="Discover the story and ethos of Cloudgreen Resort & Spa in Metgutad. A tranquil 2-star resort offering pool, spa, pet-friendly cottages and warm hospitality." />
+        <title>About Us | Reveridge Boutique Escapes Maharashtra</title>
+        <meta name="description" content="Discover the story and ethos of Reveridge. A curated collection of boutique nature escapes across Maharashtra delivering elevated stays." />
       </Helmet>
 
       {/* Page Header */}
@@ -155,6 +156,9 @@ export default function About() {
         </div>
       </section>
 
+      {/* Brand Ethos & Brand Name Origin */}
+      <BrandPhilosophy />
+
       {/* Core Values */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -185,7 +189,7 @@ export default function About() {
       <section className="py-16 bg-forest-900 text-cream-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h3 className="font-serif text-3xl font-bold text-white">Why Travelers Choose Cloudgreen</h3>
+            <h3 className="font-serif text-3xl font-bold text-white">Why Travelers Choose Reveridge</h3>
             <p className="text-sm text-cream-300 mt-2">Everything you need for an unforgettable hill-station vacation</p>
           </div>
 

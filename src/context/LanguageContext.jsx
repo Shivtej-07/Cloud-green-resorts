@@ -4,9 +4,9 @@ const LanguageContext = createContext();
 
 export const translations = {
   en: {
-    brandSubtitle: "Resort & Spa • Mahabaleshwar",
-    tagline: "Escape to the Clouds",
-    heroDesc: "A peaceful sanctuary nestled among the misty hills and strawberry fields of Metgutad, Mahabaleshwar–Panchgani. Experience serene mountain living starting at ₹1,897/night.",
+    brandSubtitle: "Boutique Nature Escapes • Maharashtra",
+    tagline: "Elevation in Every Sense",
+    heroDesc: "Reveridge is a curated collection of boutique nature escapes across Maharashtra — spanning mountains, forests, and coastlines across Mahabaleshwar, Lingmala, Matheran, and Dapoli.",
     bookNow: "Book Now",
     callNow: "Call Now",
     checkAvailability: "Check Availability",
@@ -24,6 +24,7 @@ export const translations = {
     petFriendly: "Pet Friendly",
     nav: {
       home: "Home",
+      destinations: "Destinations",
       about: "About Us",
       rooms: "Rooms & Suites",
       spa: "Spa & Wellness",
@@ -43,9 +44,9 @@ export const translations = {
     nearbySpots: "Nearby Attractions"
   },
   hi: {
-    brandSubtitle: "रिसॉर्ट & स्पा • महाबलेश्वर",
-    tagline: "बादलों की गोद में सुकून",
-    heroDesc: "मेटगुटाड, महाबलेश्वर-पांचगणी की सुरम्य वादियों और स्ट्रॉबेरी के बागानों के बीच बसा एक शांत आश्रय। मात्र ₹1,897/रात से शुरू।",
+    brandSubtitle: "बुटीक नेचर एस्केप्स • महाराष्ट्र",
+    tagline: "हर अनुभव में एक नई ऊंचाई",
+    heroDesc: "रेवरिज महाराष्ट्र के पहाड़ों, जंगलों और समुद्र तटों पर स्थित बुटीक नेचर एस्केप्स का एक अनूठा संग्रह है।",
     bookNow: "अभी बुक करें",
     callNow: "कॉल करें",
     checkAvailability: "उपलब्धता जांचें",
@@ -63,6 +64,7 @@ export const translations = {
     petFriendly: "पालतू जानवर अनुकूल",
     nav: {
       home: "होम",
+      destinations: "डेस्टिनेशन्स",
       about: "हमारे बारे में",
       rooms: "कमरे और सुइट्स",
       spa: "स्पा और वेलनेस",
@@ -82,9 +84,9 @@ export const translations = {
     nearbySpots: "आसपास के प्रमुख आकर्षण"
   },
   mr: {
-    brandSubtitle: "रिसॉर्ट आणि स्पा • महाबळेश्वर",
-    tagline: "ढगांच्या कुशीत निवांत क्षण",
-    heroDesc: "मेटगुताड, महाबळेश्वर-पाचगणीच्या निसर्गरम्य दऱ्या आणि स्ट्रॉबेरी बागांमध्ये वसलेले शांत ठिकाण. फक्त ₹1,897/रात्र पासून सुरू.",
+    brandSubtitle: "बुटीक नेचर एस्केप्स • महाराष्ट्र",
+    tagline: "प्रत्येक अनुभवात निसर्गाची भव्यता",
+    heroDesc: "रेवरिज म्हणजे महाराष्ट्रातील पर्वत, जंगले आणि समुद्रकिनाऱ्यांवरील निवडक बुटीक नेचर एस्केप्सचा सुंदर संग्रह.",
     bookNow: "आत्ताच बुक करा",
     callNow: "कॉल करा",
     checkAvailability: "खोली उपलब्धता तपासा",
@@ -102,6 +104,7 @@ export const translations = {
     petFriendly: "पाळीव प्राण्यांसाठी अनुकूल",
     nav: {
       home: "मुख्यपृष्ठ",
+      destinations: "डेस्टिनेशन्स",
       about: "आमच्याबद्दल",
       rooms: "खोल्या व सुईट्स",
       spa: "स्पा आणि वेलनेस",

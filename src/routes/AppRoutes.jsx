@@ -12,6 +12,7 @@ import Attractions from '../pages/Attractions';
 import Reviews from '../pages/Reviews';
 import Contact from '../pages/Contact';
 import BookingEnquiry from '../pages/BookingEnquiry';
+import Destinations from '../pages/Destinations';
 import Admin from '../pages/Admin';
 import NotFound from '../pages/NotFound';
 
@@ -26,6 +27,7 @@ export default function AppRoutes() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="destinations" element={<Destinations />} />
         <Route path="rooms" element={<Rooms />} />
         <Route path="rooms/:id" element={<RoomDetails />} />
         <Route path="spa" element={<Spa />} />

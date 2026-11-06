@@ -16,6 +16,7 @@ import {
   Info 
 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
+import { destinations } from '../../data/destinations';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
 import Button from '../common/Button';
 
@@ -25,11 +26,13 @@ export default function EnquiryForm() {
   const [copied, setCopied] = useState(false);
   const [submittedWhatsApp, setSubmittedWhatsApp] = useState(false);
 
-  // Read initial values from URL search params if navigated from Hero Availability Bar
+  // Read initial values from URL search params if navigated from Hero Availability Bar or Destination card
   const initialCheckIn = searchParams.get('checkIn') || '';
   const initialCheckOut = searchParams.get('checkOut') || '';
   const initialGuests = searchParams.get('guests') || '2 Adults';
   const initialRoom = searchParams.get('room') || rooms[0].id;
+  const propertyParam = searchParams.get('property');
+  const initialPropId = destinations.some(d => d.id === propertyParam) ? propertyParam : 'mahabaleshwar-resort';
 
   const {
     register,
@@ -42,6 +45,7 @@ export default function EnquiryForm() {
       name: '',
       phone: '',
       email: '',
+      destinationProperty: initialPropId,
       roomType: initialRoom,
       checkIn: initialCheckIn || new Date(Date.now() + 86400000).toISOString().split('T')[0],
       checkOut: initialCheckOut || new Date(Date.now() + 172800000).toISOString().split('T')[0],
@@ -51,37 +55,46 @@ export default function EnquiryForm() {
     }
   });
 
+  const selectedPropertyId = watch('destinationProperty') || initialPropId;
+  const currentProperty = destinations.find(d => d.id === selectedPropertyId) || destinations[0];
+  const isPrimaryResort = currentProperty.isPrimaryResort;
+
   const selectedRoomId = watch('roomType');
   const checkInDate = watch('checkIn');
   const checkOutDate = watch('checkOut');
   const roomsCount = watch('roomsCount') || 1;
 
-  // Selected room object
+  // Selected room object (for Mahabaleshwar resort rooms)
   const currentRoom = rooms.find(r => r.id === selectedRoomId) || rooms[0];
+  const unitPrice = isPrimaryResort ? currentRoom.price : currentProperty.startingPrice;
 
   // Calculate estimated nights and price
   const calculateStay = () => {
-    if (!checkInDate || !checkOutDate) return { nights: 1, total: currentRoom.price * roomsCount };
+    if (!checkInDate || !checkOutDate) return { nights: 1, total: unitPrice * roomsCount };
     const d1 = new Date(checkInDate);
     const d2 = new Date(checkOutDate);
     const diffTime = d2.getTime() - d1.getTime();
     const nights = Math.max(1, Math.round(diffTime / (1000 * 3600 * 24)));
-    const total = nights * currentRoom.price * Number(roomsCount);
+    const total = nights * unitPrice * (isPrimaryResort ? Number(roomsCount) : 1);
     return { nights, total };
   };
 
   const { nights, total } = calculateStay();
 
   const generateWhatsAppUrl = (data) => {
+    const accommodationTitle = isPrimaryResort 
+      ? `${currentProperty.name} — ${currentRoom.name}`
+      : `${currentProperty.name} (${currentProperty.badge})`;
+
     return buildWhatsAppLink({
       name: data.name,
       phone: data.phone,
       email: data.email,
-      roomType: currentRoom.name,
+      roomType: accommodationTitle,
       checkIn: data.checkIn,
       checkOut: data.checkOut,
       guests: data.guests,
-      roomsCount: data.roomsCount,
+      roomsCount: isPrimaryResort ? data.roomsCount : 'Entire Property',
       specialRequests: data.specialRequests,
       source: "Online Booking Enquiry Form"
     });
@@ -179,41 +192,75 @@ export default function EnquiryForm() {
           </div>
         </div>
 
-        {/* Row 2: Room Selection & Count */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="sm:col-span-2">
-            <label htmlFor="enquiry-room-type" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
-              Select Preferred Accommodation <span className="text-red-500">*</span>
-            </label>
-            <select
-              id="enquiry-room-type"
-              {...register("roomType")}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-medium bg-cream-50 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
-            >
-              {rooms.map((room) => (
-                <option key={room.id} value={room.id}>
-                  {room.name} — ₹{room.price.toLocaleString()}/night ({room.occupancy})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="enquiry-rooms-count" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
-              No. of Rooms
-            </label>
-            <select
-              id="enquiry-rooms-count"
-              {...register("roomsCount")}
-              className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-medium bg-cream-50 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
-            >
-              <option value="1">1 Room</option>
-              <option value="2">2 Rooms</option>
-              <option value="3">3 Rooms</option>
-              <option value="4">4+ Rooms (Group)</option>
-            </select>
-          </div>
+        {/* Destination & Property Selector */}
+        <div>
+          <label htmlFor="enquiry-destination" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+            Select Reveridge Destination / Property <span className="text-red-500">*</span>
+          </label>
+          <select
+            id="enquiry-destination"
+            {...register("destinationProperty")}
+            className="w-full px-4 py-3 rounded-2xl border border-teal-600/40 text-sm font-semibold text-forest-950 bg-teal-50/40 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
+          >
+            {destinations.map((d) => (
+              <option key={d.id} value={d.id}>
+                {d.propertyCode} — {d.name} {d.bhk ? `(${d.bhk})` : ''} • From ₹{d.startingPrice.toLocaleString()}/night
+              </option>
+            ))}
+          </select>
         </div>
+
+        {/* Row 2: Room Selection & Count (Conditional for Resort vs Villa/Cottage) */}
+        {isPrimaryResort ? (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="sm:col-span-2">
+              <label htmlFor="enquiry-room-type" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                Select Preferred Room Category <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="enquiry-room-type"
+                {...register("roomType")}
+                className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-medium bg-cream-50 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
+              >
+                {rooms.map((room) => (
+                  <option key={room.id} value={room.id}>
+                    {room.name} — ₹{room.price.toLocaleString()}/night ({room.occupancy})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="enquiry-rooms-count" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                No. of Rooms
+              </label>
+              <select
+                id="enquiry-rooms-count"
+                {...register("roomsCount")}
+                className="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm font-medium bg-cream-50 focus:bg-white focus:border-forest-800 focus:ring-2 focus:ring-forest-100 focus:outline-none cursor-pointer"
+              >
+                <option value="1">1 Room</option>
+                <option value="2">2 Rooms</option>
+                <option value="3">3 Rooms</option>
+                <option value="4">4+ Rooms (Group)</option>
+              </select>
+            </div>
+          </div>
+        ) : (
+          <div className="p-4 rounded-2xl bg-teal-50/60 border border-teal-200/80 flex items-center justify-between">
+            <div>
+              <span className="text-xs font-bold text-teal-900 block">
+                {currentProperty.name}
+              </span>
+              <span className="text-xs text-slate-600">
+                {currentProperty.tagline}
+              </span>
+            </div>
+            <span className="text-xs font-bold px-3 py-1 rounded-full bg-teal-600 text-white shrink-0">
+              {currentProperty.badge}
+            </span>
+          </div>
+        )}
 
         {/* Row 3: Check-in, Check-out, Guests */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
