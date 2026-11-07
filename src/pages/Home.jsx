@@ -33,7 +33,7 @@ export default function Home() {
 
         {/* Check In / Check Out Availability Bar - Appears cleanly as visitor scrolls down on mobile, bridging on desktop */}
         <div id="check-availability" className="relative z-30 bg-cream-200 lg:bg-transparent py-8 sm:py-10 lg:py-0 lg:-mt-20 px-3.5 sm:px-6 lg:px-8 transition-all">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <AvailabilityBar />
           </div>
         </div>

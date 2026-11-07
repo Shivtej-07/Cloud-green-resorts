@@ -12,13 +12,17 @@ import {
   X, 
   ShieldCheck,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Tag,
+  Phone
 } from 'lucide-react';
 import { useAdminAuth } from '../context/AdminAuthContext';
 import { useData } from '../context/DataContext';
 import { CLOUDINARY_CONFIG } from '../utils/cloudinary';
 import AdminLogin from '../components/admin/AdminLogin';
 import AdminDashboard from '../components/admin/AdminDashboard';
+import AdminProperties from '../components/admin/AdminProperties';
+import AdminOffers from '../components/admin/AdminOffers';
 import AdminRooms from '../components/admin/AdminRooms';
 import AdminGallery from '../components/admin/AdminGallery';
 import AdminResortInfo from '../components/admin/AdminResortInfo';
@@ -36,9 +40,11 @@ export default function Admin() {
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'properties', label: 'All 5 Properties', icon: Building2 },
+    { id: 'offers', label: 'Offers & Discounts', icon: Tag },
     { id: 'rooms', label: 'Rooms & Suites', icon: Bed },
     { id: 'gallery', label: 'Gallery', icon: ImageIcon },
-    { id: 'resort', label: 'Resort & Contact Info', icon: Building2 },
+    { id: 'resort', label: 'Resort & Contact Info', icon: Phone },
     { id: 'media', label: 'Cloudinary CDN & Backup', icon: UploadCloud },
   ];
 
@@ -50,14 +56,14 @@ export default function Admin() {
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-forest-800 to-forest-600 flex items-center justify-center text-gold-400 font-serif font-bold text-lg shadow-md border border-forest-500/30">
-              CG
+              R
             </div>
             <div>
               <h1 className="font-serif font-bold text-sm tracking-tight text-white leading-tight">
-                Cloudgreen Resort
+                Reveridge Hospitality
               </h1>
               <p className="text-[11px] text-gold-400/90 font-medium">
-                Admin Control Panel
+                5 Properties Control Center
               </p>
             </div>
           </div>
@@ -224,6 +230,8 @@ export default function Admin() {
         {/* Tab Content */}
         <main className="p-6 sm:p-8 w-full space-y-6">
           {activeTab === 'dashboard' && <AdminDashboard onNavigateTab={setActiveTab} />}
+          {activeTab === 'properties' && <AdminProperties onNavigateTab={setActiveTab} />}
+          {activeTab === 'offers' && <AdminOffers />}
           {activeTab === 'rooms' && <AdminRooms />}
           {activeTab === 'gallery' && <AdminGallery />}
           {activeTab === 'resort' && <AdminResortInfo />}
