@@ -73,8 +73,8 @@ export default function DestinationsDropdown({ isOpen, onClose }) {
               className="group relative flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-100 hover:border-gold-400/60 hover:bg-cream-50/60 hover:shadow-soft transition-all duration-200 cursor-pointer text-left block"
             >
               {/* Illustrated icon container */}
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200/90 group-hover:border-gold-500/50 group-hover:shadow-xs flex items-center justify-center p-2.5 shrink-0 transition-all duration-200">
-                <DestinationIcon type={item.iconType} className="w-full h-full" />
+              <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] max-w-[3.5rem] max-h-[3.5rem] rounded-2xl bg-white border border-slate-200/90 group-hover:border-gold-500/50 group-hover:shadow-xs flex items-center justify-center p-2.5 shrink-0 transition-all duration-200">
+                <DestinationIcon type={item.iconType} className="w-full h-full object-contain" />
               </div>
 
               {/* Details */}

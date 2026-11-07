@@ -389,7 +389,7 @@ export default function Navbar() {
                     >
                       {/* Icon */}
                       <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 p-1.5 shrink-0 flex items-center justify-center">
-                        <DestinationIcon type={item.iconType} className="w-full h-full" />
+                        <DestinationIcon type={item.iconType} className="w-full h-full object-contain" />
                       </div>
 
                       {/* Info */}

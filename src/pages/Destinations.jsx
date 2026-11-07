@@ -172,8 +172,8 @@ export default function Destinations() {
                       </div>
 
                       {/* Line-art Icon Container */}
-                      <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 p-2.5 shrink-0 hidden sm:flex items-center justify-center">
-                        <DestinationIcon type={prop.iconType} className="w-full h-full" />
+                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] max-w-[3.5rem] max-h-[3.5rem] rounded-2xl bg-slate-50 border border-slate-200 p-2.5 shrink-0 hidden sm:flex items-center justify-center">
+                        <DestinationIcon type={prop.iconType} className="w-full h-full object-contain" />
                       </div>
                     </div>
 

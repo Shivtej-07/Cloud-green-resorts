@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight, Sparkles, Star } from 'lucide-react';
+import { MapPin, ArrowRight, ChevronRight } from 'lucide-react';
 import { destinations, destinationsSummary } from '../../data/destinations';
 import DestinationIcon from '../common/DestinationIcons';
 import SectionTitle from '../common/SectionTitle';
@@ -48,15 +48,16 @@ export default function DestinationsStrip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: idx * 0.08 }}
+              className="flex"
             >
               <Link
                 to={`/destinations/${prop.id}`}
-                className="group flex flex-col h-full bg-white rounded-3xl p-5 border border-slate-200/80 hover:border-gold-500/50 hover:shadow-soft-lg transition-all duration-300"
+                className="group flex flex-col w-full h-full bg-white rounded-3xl p-5 border border-slate-200/80 hover:border-gold-500/50 hover:shadow-soft-lg transition-all duration-300"
               >
-                {/* Top: Icon & Badge */}
+                {/* Top: Icon & Badge — Strictly fixed size on mobile & desktop */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-slate-50 border border-slate-200/90 group-hover:border-teal-500/50 group-hover:bg-teal-50/30 flex items-center justify-center p-2.5 transition-all shadow-2xs">
-                    <DestinationIcon type={prop.iconType} className="w-full h-full" />
+                  <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] max-w-[3.5rem] max-h-[3.5rem] shrink-0 rounded-2xl bg-slate-50 border border-slate-200/90 group-hover:border-teal-500/50 group-hover:bg-teal-50/30 flex items-center justify-center p-2.5 transition-all shadow-2xs">
+                    <DestinationIcon type={prop.iconType} className="w-full h-full object-contain" />
                   </div>
 
                   {prop.bhk ? (
@@ -86,18 +87,19 @@ export default function DestinationsStrip() {
                   </p>
                 </div>
 
-                {/* Bottom Tariff & Action */}
+                {/* Bottom Tariff & "View Page >" Action */}
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-slate-400 uppercase block">From</span>
+                    <span className="text-[10px] text-slate-400 uppercase block font-medium">From</span>
                     <span className="font-bold text-sm text-forest-900">
                       ₹{prop.startingPrice.toLocaleString()}
                     </span>
                   </div>
 
-                  <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-teal-600 group-hover:text-white flex items-center justify-center text-slate-600 transition-all">
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
+                  <div className="inline-flex items-center gap-1 text-[#8C6228] font-bold text-xs group-hover:text-[#6b4b1f] group-hover:translate-x-0.5 transition-all">
+                    <span>View Page</span>
+                    <ChevronRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
                 </div>
               </Link>
             </motion.div>
@@ -133,4 +135,3 @@ export default function DestinationsStrip() {
     </section>
   );
 }
-

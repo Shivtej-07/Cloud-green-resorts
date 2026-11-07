@@ -34,7 +34,6 @@ import {
 } from 'lucide-react';
 import { destinations, getPropertyById } from '../data/destinations';
 import { siteConfig } from '../data/siteConfig';
-import DestinationIcon from '../components/common/DestinationIcons';
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
 import Button from '../components/common/Button';
 
