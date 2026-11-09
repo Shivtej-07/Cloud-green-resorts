@@ -2,32 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  MapPin, 
-  Star, 
-  Calendar, 
-  Clock, 
-  Phone, 
-  Car, 
-  ArrowUpRight, 
-  CheckCircle2, 
-  ChevronRight, 
-  Compass, 
-  Sparkles, 
-  Eye, 
-  Coffee, 
+import {
+  MapPin,
+  Star,
+  Calendar,
+  Clock,
+  Phone,
+  Car,
+  ArrowUpRight,
+  CheckCircle2,
+  ChevronRight,
+  ChevronLeft,
+  Compass,
+  Sparkles,
+  Eye,
+  Coffee,
   Heart,
-  Utensils, 
-  Waves, 
-  Wifi, 
-  ShieldCheck, 
-  Flame, 
-  Mountain, 
-  Users, 
-  Bed, 
-  Maximize2, 
-  Plane, 
-  Navigation, 
+  Utensils,
+  Waves,
+  Wifi,
+  ShieldCheck,
+  Flame,
+  Mountain,
+  Users,
+  Bed,
+  Maximize2,
+  Plane,
+  Navigation,
   ArrowRight,
   Layers,
   ChevronDown
@@ -53,6 +54,15 @@ export default function PropertyDetails() {
     setActivePhotoIdx(0);
   }, [property.id]);
 
+  // Continuous background image auto-play with Framer Motion (5s interval)
+  useEffect(() => {
+    if (!property?.images?.length || property.images.length <= 1) return;
+    const interval = setInterval(() => {
+      setActivePhotoIdx((prev) => (prev + 1) % property.images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [property?.images?.length]);
+
   const whatsappInquiryUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about staying at ${property.name}. Please share tariffs and availability.`)}`;
   const callUrl = `tel:${siteConfig.contact.phone}`;
 
@@ -74,153 +84,144 @@ export default function PropertyDetails() {
         <link rel="canonical" href={`https://reveridge.com/destinations/${property.id}`} />
       </Helmet>
 
-      <div className="bg-cream-100 min-h-screen pt-24 sm:pt-28 pb-20">
-        
-        {/* Breadcrumbs & Eyebrow */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <Link to="/" className="hover:text-forest-900 transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <Link to="/destinations" className="hover:text-forest-900 transition-colors">Destinations</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-forest-900 font-semibold truncate">{property.shortName}</span>
-          </nav>
+      {/* Full-Screen True 100vh Cinematic Hero with Continuous Auto-Playing Background Image Slider */}
+      <section 
+        className="relative h-screen h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8 overflow-hidden bg-forest-950 text-white"
+      >
+        {/* Full Background Image Slider using Framer Motion - Auto-plays like a luxury brand */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={activePhotoIdx}
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1.0] }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${property.images[activePhotoIdx] || property.images[0]})` }}
+            />
+          </AnimatePresence>
+
+          {/* Cinematic Multi-Layer Gradient Overlays for 100% Text Clarity */}
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-black/80" />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-[0.5px]" />
         </div>
 
-        {/* Main Property Header & Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-          <div className="bg-white rounded-3xl sm:rounded-4xl p-5 sm:p-8 lg:p-10 shadow-soft border border-slate-200/80">
-            
-            {/* Top Badges & Property Code */}
-            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <div className="flex items-center gap-2.5 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-forest-900 text-gold-400 text-[11px] sm:text-xs font-bold tracking-widest uppercase shadow-xs">
-                  {property.propertyCode}
+        {/* Top: Breadcrumbs & Badges */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          {/* Breadcrumbs */}
+          <nav className="flex items-center gap-2 text-xs text-cream-200/80 font-medium mb-6">
+            <Link to="/" className="hover:text-gold-300 transition-colors">Home</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-cream-300/60" />
+            <Link to="/destinations" className="hover:text-gold-300 transition-colors">Destinations</Link>
+            <ChevronRight className="w-3.5 h-3.5 text-cream-300/60" />
+            <span className="text-gold-400 font-semibold truncate">{property.shortName}</span>
+          </nav>
+
+          {/* Badges Row */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="px-3 py-1 rounded-full bg-forest-900/90 text-gold-400 border border-gold-500/40 text-[11px] sm:text-xs font-bold tracking-widest uppercase shadow-md backdrop-blur-md">
+                {property.propertyCode}
+              </span>
+              <span className="px-3 py-1 rounded-full bg-black/40 border border-gold-400/40 text-cream-100 text-[11px] sm:text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+                ★ {property.starEquivalent || "5 Star Boutique"}
+              </span>
+              {property.badge && (
+                <span className="px-3 py-1 rounded-full bg-teal-900/70 border border-teal-400/40 text-teal-200 text-[11px] sm:text-xs font-medium backdrop-blur-md">
+                  {property.badge}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-gold-50 border border-gold-300/80 text-forest-900 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
-                  ★ {property.starEquivalent || "5 Star Boutique"}
-                </span>
-                {property.badge && (
-                  <span className="px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-[11px] sm:text-xs font-medium">
-                    {property.badge}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                <div className="flex items-center text-amber-500">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span className="font-bold ml-1 text-slate-800">{property.rating}</span>
-                </div>
-                <span>({property.reviewCount} verified guest reviews)</span>
-              </div>
-            </div>
-
-            {/* Title & Location Header */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-6">
-              <div>
-                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest-950 tracking-tight leading-tight">
-                  {property.name}
-                </h1>
-                <p className="mt-2 text-sm sm:text-base text-gold-700 font-semibold uppercase tracking-wider flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-gold-600 shrink-0" />
-                  <span>{property.location}</span>
-                  {property.altitude && (
-                    <span className="text-slate-400 font-normal">
-                      • {property.altitude}
-                    </span>
-                  )}
-                </p>
-                <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-3xl font-light leading-relaxed">
-                  {property.tagline}
-                </p>
-              </div>
-
-              {/* Price & Primary Header Actions */}
-              <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0 bg-cream-50 lg:bg-transparent p-4 lg:p-0 rounded-2xl border lg:border-none border-slate-200">
-                <div className="text-left lg:text-right">
-                  <span className="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-slate-500 block">
-                    Starting Tariff
-                  </span>
-                  <div className="flex items-baseline gap-1">
-                    <span className="font-serif text-3xl sm:text-4xl font-bold text-forest-900">
-                      ₹{property.startingPrice.toLocaleString()}
-                    </span>
-                    <span className="text-xs text-slate-500 font-normal">/ night</span>
-                  </div>
-                  <span className="text-[10px] text-slate-400 block mt-0.5">Taxes applicable • Best rate direct</span>
-                </div>
-
-                <div className="flex items-center gap-2 w-full sm:w-auto">
-                  <a
-                    href={whatsappInquiryUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-sm transition-colors"
-                  >
-                    <WhatsAppIcon className="w-4 h-4" />
-                    <span>WhatsApp</span>
-                  </a>
-                  <Button
-                    to={`/booking?property=${property.id}`}
-                    variant="gold"
-                    size="sm"
-                    className="px-5 py-2.5 text-xs font-bold shadow-md text-forest-950"
-                  >
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>Check Dates</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Interactive Image Gallery */}
-            <div className="space-y-3">
-              {/* Main Featured Photo */}
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl sm:rounded-3xl overflow-hidden bg-forest-950 shadow-inner group">
-                <img
-                  src={property.images[activePhotoIdx] || property.images[0]}
-                  alt={`${property.name} view ${activePhotoIdx + 1}`}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-102"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
-                
-                {/* Photo Badge */}
-                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-white">
-                  <span className="text-[11px] sm:text-xs tracking-wider uppercase bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                    Photo {activePhotoIdx + 1} of {property.images.length}
-                  </span>
-                </div>
-              </div>
-
-              {/* Photo Thumbnails */}
-              {property.images.length > 1 && (
-                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
-                  {property.images.map((img, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setActivePhotoIdx(idx)}
-                      className={`relative aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden border-2 transition-all focus:outline-none ${
-                        activePhotoIdx === idx 
-                          ? 'border-gold-500 ring-2 ring-gold-400/30 scale-98 shadow-sm' 
-                          : 'border-transparent opacity-75 hover:opacity-100 hover:border-slate-300'
-                      }`}
-                    >
-                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
-                </div>
               )}
             </div>
 
+            <div className="flex items-center gap-1.5 text-xs text-cream-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <span className="font-bold text-white">{property.rating}</span>
+              <span className="text-cream-300/80">({property.reviewCount} verified guest reviews)</span>
+            </div>
+          </div>
+
+          {/* Title, Location & Quick Booking Actions */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="max-w-3xl">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight drop-shadow-md">
+                {property.name}
+              </h1>
+
+              <p className="mt-2.5 text-xs sm:text-sm text-gold-300 font-semibold uppercase tracking-wider flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-gold-400 shrink-0" />
+                <span>{property.location}</span>
+                {property.altitude && (
+                  <span className="text-cream-200/70 font-normal">
+                    • {property.altitude}
+                  </span>
+                )}
+              </p>
+
+              <p className="mt-3 text-sm sm:text-base text-cream-100/90 leading-relaxed font-light drop-shadow-sm">
+                {property.tagline}
+              </p>
+            </div>
+
+            {/* Price & Primary Header Actions */}
+            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0 bg-black/45 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/20 shadow-xl">
+              <div className="text-left lg:text-right">
+                <span className="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-gold-400 block">
+                  Starting Tariff
+                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-serif text-3xl sm:text-4xl font-bold text-white drop-shadow-sm">
+                    ₹{property.startingPrice.toLocaleString()}
+                  </span>
+                  <span className="text-xs text-cream-200 font-normal">/ night</span>
+                </div>
+                <span className="text-[10px] text-cream-300/80 block mt-0.5">Taxes applicable • Best rate direct</span>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <a
+                  href={whatsappInquiryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-md transition-all hover:scale-102"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span>WhatsApp</span>
+                </a>
+                <Button
+                  to={`/booking?property=${property.id}`}
+                  variant="gold"
+                  size="sm"
+                  className="px-5 py-2.5 text-xs font-bold shadow-lg text-forest-950 hover:scale-102"
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Check Dates</span>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Content Section: 2 Columns */}
+        {/* Bottom: Smooth Scroll Down Prompt */}
+        <div 
+          onClick={() => {
+            const el = document.getElementById('property-content');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="relative z-10 flex flex-col items-center justify-center cursor-pointer group text-cream-200/80 hover:text-gold-300 transition-colors select-none pb-1"
+        >
+          <span className="text-[10px] uppercase tracking-widest font-semibold mb-1 group-hover:translate-y-0.5 transition-transform">
+            Scroll to Explore Property Details
+          </span>
+          <ChevronDown className="w-4 h-4 animate-bounce text-gold-400" />
+        </div>
+      </section>
+
+      {/* Main Content Area */}
+      <div id="property-content" className="bg-cream-100 min-h-screen py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            
+
             {/* Left 8 Cols: Overview Specs, Description, Rooms & Pricing, Facilities, Packages, Experiences */}
             <div className="lg:col-span-8 space-y-10">
 
@@ -240,7 +241,7 @@ export default function PropertyDetails() {
 
                 {/* Specs Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-                  
+
                   <div className="p-3.5 rounded-2xl bg-cream-50 border border-slate-200/70 flex items-start gap-3">
                     <Layers className="w-4 h-4 text-forest-800 shrink-0 mt-0.5" />
                     <div>
@@ -534,10 +535,10 @@ export default function PropertyDetails() {
               {/* MODERN SHOWCASE: COFFEE SHOP & CAFE (For Flagship Property) */}
               {property.cafeInfo && (
                 <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-amber-200/60 relative overflow-hidden">
-                  
+
                   {/* Subtle warm amber ambient glow */}
                   <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-100 relative z-10">
                     <div className="flex items-center gap-3">
@@ -567,7 +568,7 @@ export default function PropertyDetails() {
 
                   {/* Content Grid: Left details + Right modern imagery */}
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
-                    
+
                     {/* Left: Description & Modern Features (7 cols) */}
                     <div className="lg:col-span-7 space-y-4">
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
@@ -577,8 +578,8 @@ export default function PropertyDetails() {
                       {/* 6 Modern Café Highlights */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                         {property.cafeInfo.features.map((item, idx) => (
-                          <div 
-                            key={idx} 
+                          <div
+                            key={idx}
                             className="p-3 rounded-2xl bg-cream-50/80 border border-amber-200/40 hover:border-amber-300 transition-colors"
                           >
                             <span className="text-xs font-bold text-forest-950 block mb-0.5">
@@ -608,24 +609,24 @@ export default function PropertyDetails() {
                     {/* Right: Modern Aesthetic Photo Gallery (5 cols) */}
                     <div className="lg:col-span-5 grid grid-cols-2 gap-2.5">
                       <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-md border-2 border-white col-span-2 h-44 sm:h-48">
-                        <img 
-                          src={property.cafeInfo.images[0]} 
-                          alt="Specialty Coffee Latte Art" 
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                        <img
+                          src={property.cafeInfo.images[0]}
+                          alt="Specialty Coffee Latte Art"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="aspect-square rounded-2xl overflow-hidden shadow-sm border-2 border-white h-28 sm:h-32">
-                        <img 
-                          src={property.cafeInfo.images[1]} 
-                          alt="Boutique Cafe Interior Lounge" 
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                        <img
+                          src={property.cafeInfo.images[1]}
+                          alt="Boutique Cafe Interior Lounge"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="aspect-square rounded-2xl overflow-hidden shadow-sm border-2 border-white h-28 sm:h-32">
-                        <img 
-                          src={property.cafeInfo.images[2]} 
-                          alt="Fresh Croissants & Artisanal Brew" 
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                        <img
+                          src={property.cafeInfo.images[2]}
+                          alt="Fresh Croissants & Artisanal Brew"
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     </div>
@@ -638,10 +639,10 @@ export default function PropertyDetails() {
               {/* WEDDING AND BANQUET VENUES — INDOOR AND OUTDOOR */}
               {property.weddingVenuesInfo && (
                 <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-rose-200/80 relative overflow-hidden">
-                  
+
                   {/* Subtle warm rose/gold ambient glow */}
                   <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-100 relative z-10">
                     <div className="flex items-center gap-3">
@@ -685,7 +686,7 @@ export default function PropertyDetails() {
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                         {property.weddingVenuesInfo.venues.map((venue, vIdx) => (
-                          <div 
+                          <div
                             key={vIdx}
                             className="p-4 rounded-2xl bg-cream-50/80 border border-rose-200/50 hover:border-rose-300 transition-colors flex flex-col justify-between"
                           >
@@ -735,10 +736,10 @@ export default function PropertyDetails() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 relative z-10">
                       {property.weddingVenuesInfo.images.map((imgUrl, imgIdx) => (
                         <div key={imgIdx} className="aspect-[16/10] rounded-2xl overflow-hidden shadow-xs border-2 border-white">
-                          <img 
-                            src={imgUrl} 
-                            alt={`Wedding & Banquet Venue ${imgIdx + 1}`} 
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                          <img
+                            src={imgUrl}
+                            alt={`Wedding & Banquet Venue ${imgIdx + 1}`}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                           />
                         </div>
                       ))}
@@ -785,11 +786,10 @@ export default function PropertyDetails() {
                           key={plan.key}
                           type="button"
                           onClick={() => setSelectedPlan(plan.key)}
-                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
-                            selectedPlan === plan.key 
-                              ? 'bg-forest-800 text-white shadow-sm' 
+                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${selectedPlan === plan.key
+                              ? 'bg-forest-800 text-white shadow-sm'
                               : 'text-slate-600 hover:text-slate-900'
-                          }`}
+                            }`}
                         >
                           {plan.label}
                         </button>
@@ -812,7 +812,7 @@ export default function PropertyDetails() {
                           className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 hover:border-gold-400/60 bg-white transition-all shadow-2xs hover:shadow-soft"
                         >
                           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
-                            
+
                             {/* Image Thumbnail */}
                             <div className="md:col-span-3">
                               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative">
@@ -865,7 +865,7 @@ export default function PropertyDetails() {
 
                             {/* Pricing & CTA Column */}
                             <div className="md:col-span-4 flex flex-col sm:flex-row md:flex-col items-start md:items-end justify-between gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
-                              
+
                               <div className="text-left md:text-right">
                                 <span className="text-[10px] uppercase font-semibold text-slate-400 block">
                                   {planLabels.find(p => p.key === selectedPlan)?.label} Tariff
@@ -926,8 +926,8 @@ export default function PropertyDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {property.facilitiesList.map((fac, idx) => (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className="p-3.5 rounded-2xl bg-cream-50/70 border border-slate-200/70 flex items-start gap-3 hover:bg-cream-100 transition-colors"
                     >
                       <div className="w-6 h-6 rounded-full bg-forest-800/10 text-forest-800 flex items-center justify-center shrink-0 mt-0.5">
@@ -958,7 +958,7 @@ export default function PropertyDetails() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {property.packages.map((pkg, idx) => (
-                      <div 
+                      <div
                         key={idx}
                         className="p-5 rounded-2xl bg-cream-50 border border-slate-200 hover:border-gold-400 flex flex-col justify-between transition-all shadow-2xs hover:shadow-soft"
                       >
@@ -1066,13 +1066,13 @@ export default function PropertyDetails() {
 
             {/* Right 4 Cols: Sticky Direct Reservation Console */}
             <div className="lg:col-span-4 sticky top-28 space-y-6">
-              
+
               {/* Direct Booking & Assistance Card */}
               <div className="bg-white rounded-3xl p-6 shadow-soft border border-slate-200/80">
                 <span className="px-3 py-1 rounded-full bg-forest-900 text-gold-400 text-[10px] font-bold tracking-widest uppercase mb-4 inline-block">
                   Direct Reservations
                 </span>
-                
+
                 <h3 className="font-serif text-xl font-bold text-forest-950 mb-1">
                   Reserve {property.shortName}
                 </h3>

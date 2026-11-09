@@ -70,9 +70,9 @@ export default function Navbar() {
     { code: 'mr', label: 'मराठी', short: 'मरा' },
   ];
 
-  // Determine if we are on homepage with transparent hero
-  const isHomePage = location.pathname === '/';
-  const showSolidNav = isScrolled || !isHomePage;
+  // Determine if we are on a page with cinematic full-screen hero where navbar starts transparent
+  const hasCinematicHero = location.pathname === '/' || location.pathname.startsWith('/destinations');
+  const showSolidNav = isScrolled || !hasCinematicHero;
 
   return (
     <>
