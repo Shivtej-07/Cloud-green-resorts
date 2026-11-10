@@ -59,8 +59,6 @@ export default function Navbar() {
     { label: t.nav.home, path: "/" },
     { label: t.nav.about, path: "/about" },
     { label: t.nav.spa, path: "/spa" },
-    { label: t.nav.gallery, path: "/gallery" },
-    { label: t.nav.reviews, path: "/reviews" },
     { label: t.nav.contact, path: "/contact" }
   ];
 
@@ -107,7 +105,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation Links & Destinations Trigger */}
-            {/* Sequence: 1. Home, 2. About Us, 3. Destinations ▾ (styled like other navbar buttons, no logo, no special background), 4. Spa & Wellness, 5. Gallery, 6. Reviews, 7. Contact */}
+            {/* Sequence: 1. Home, 2. About Us, 3. Destinations ▾, 4. Spa & Wellness, 5. Contact */}
             <div className="hidden lg:flex items-center gap-1 xl:gap-2">
               
               {/* 1. Home */}
@@ -194,7 +192,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              {/* 4. Spa & Wellness, 5. Gallery, 6. Reviews, 7. Contact */}
+              {/* 4. Spa & Wellness, 5. Contact */}
               {navItems.filter(item => item.path !== "/" && item.path !== "/about").map((item) => (
                 <NavLink
                   key={item.path}
@@ -429,7 +427,7 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Navigation Links: 4. Spa & Wellness, 5. Gallery, 6. Reviews, 7. Contact */}
+            {/* Navigation Links: 4. Spa & Wellness, 5. Contact */}
             <div className="flex flex-col py-3 space-y-1.5">
               {navItems.filter(item => item.path !== "/" && item.path !== "/about").map((item) => (
                 <NavLink

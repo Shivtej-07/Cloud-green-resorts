@@ -532,240 +532,6 @@ export default function PropertyDetails() {
                 </div>
               )}
 
-              {/* MODERN SHOWCASE: COFFEE SHOP & CAFE (For Flagship Property) */}
-              {property.cafeInfo && (
-                <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-amber-200/60 relative overflow-hidden">
-
-                  {/* Subtle warm amber ambient glow */}
-                  <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-100 relative z-10">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-amber-900 text-amber-200 flex items-center justify-center shadow-xs shrink-0">
-                        <Coffee className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h2 className="font-serif text-xl sm:text-2xl font-bold text-forest-950">
-                            {property.cafeInfo.name}
-                          </h2>
-                          <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200 text-[10px] font-bold tracking-wider uppercase">
-                            {property.cafeInfo.badge}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-500 mt-0.5">
-                          {property.cafeInfo.tagline}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cream-100 text-slate-700 text-xs font-semibold shrink-0">
-                      <Clock className="w-3.5 h-3.5 text-amber-800" />
-                      <span>{property.cafeInfo.timings}</span>
-                    </div>
-                  </div>
-
-                  {/* Content Grid: Left details + Right modern imagery */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
-
-                    {/* Left: Description & Modern Features (7 cols) */}
-                    <div className="lg:col-span-7 space-y-4">
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
-                        {property.cafeInfo.description}
-                      </p>
-
-                      {/* 6 Modern Café Highlights */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                        {property.cafeInfo.features.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="p-3 rounded-2xl bg-cream-50/80 border border-amber-200/40 hover:border-amber-300 transition-colors"
-                          >
-                            <span className="text-xs font-bold text-forest-950 block mb-0.5">
-                              {item.title}
-                            </span>
-                            <span className="text-[11px] text-slate-500 leading-snug block font-light">
-                              {item.desc}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Direct Café WhatsApp Action */}
-                      <div className="pt-2 flex items-center gap-3">
-                        <a
-                          href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about The Reveridge Café & Coffee Shop at ${property.name}. Please share menu, specialty coffees, and seating options.`)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-sm transition-colors"
-                        >
-                          <WhatsAppIcon className="w-4 h-4" />
-                          <span>Inquire Café Menu &amp; Specials</span>
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Right: Modern Aesthetic Photo Gallery (5 cols) */}
-                    <div className="lg:col-span-5 grid grid-cols-2 gap-2.5">
-                      <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-md border-2 border-white col-span-2 h-44 sm:h-48">
-                        <img
-                          src={property.cafeInfo.images[0]}
-                          alt="Specialty Coffee Latte Art"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="aspect-square rounded-2xl overflow-hidden shadow-sm border-2 border-white h-28 sm:h-32">
-                        <img
-                          src={property.cafeInfo.images[1]}
-                          alt="Boutique Cafe Interior Lounge"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="aspect-square rounded-2xl overflow-hidden shadow-sm border-2 border-white h-28 sm:h-32">
-                        <img
-                          src={property.cafeInfo.images[2]}
-                          alt="Fresh Croissants & Artisanal Brew"
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-              )}
-
-              {/* WEDDING AND BANQUET VENUES — INDOOR AND OUTDOOR */}
-              {property.weddingVenuesInfo && (
-                <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-rose-200/80 relative overflow-hidden">
-
-                  {/* Subtle warm rose/gold ambient glow */}
-                  <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/5 rounded-full blur-3xl pointer-events-none" />
-
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-slate-100 relative z-10">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-rose-900 text-rose-200 flex items-center justify-center shadow-xs shrink-0">
-                        <Heart className="w-5 h-5 fill-rose-300/30 text-rose-300" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <h2 className="font-serif text-xl sm:text-2xl font-bold text-forest-950">
-                            {property.weddingVenuesInfo.title}
-                          </h2>
-                          <span className="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-900 border border-rose-200 text-[10px] font-bold tracking-wider uppercase">
-                            {property.weddingVenuesInfo.badge}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-500 mt-0.5">
-                          {property.weddingVenuesInfo.tagline}
-                        </p>
-                      </div>
-                    </div>
-
-                    {property.weddingVenuesInfo.capacity && (
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cream-100 text-slate-700 text-xs font-semibold shrink-0">
-                        <Users className="w-3.5 h-3.5 text-rose-800" />
-                        <span>{property.weddingVenuesInfo.capacity}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Description & Overview */}
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-light mb-6 relative z-10">
-                    {property.weddingVenuesInfo.description}
-                  </p>
-
-                  {/* 4 Dedicated Venue Cards (Indoor & Outdoor) */}
-                  {property.weddingVenuesInfo.venues && (
-                    <div className="mb-6 relative z-10">
-                      <h3 className="font-serif text-sm sm:text-base font-bold text-forest-950 mb-3 flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-gold-500" />
-                        <span>Featured Indoor &amp; Outdoor Event Venues</span>
-                      </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        {property.weddingVenuesInfo.venues.map((venue, vIdx) => (
-                          <div
-                            key={vIdx}
-                            className="p-4 rounded-2xl bg-cream-50/80 border border-rose-200/50 hover:border-rose-300 transition-colors flex flex-col justify-between"
-                          >
-                            <div>
-                              <div className="flex items-center justify-between gap-2 mb-1.5">
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-rose-800 bg-rose-100/60 px-2 py-0.5 rounded-md">
-                                  {venue.type}
-                                </span>
-                                <span className="text-[11px] font-bold text-forest-900">
-                                  {venue.capacity}
-                                </span>
-                              </div>
-                              <h4 className="font-serif font-bold text-slate-900 text-sm mb-1.5">
-                                {venue.name}
-                              </h4>
-                              <p className="text-xs text-slate-600 leading-relaxed font-light">
-                                {venue.desc}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Key Wedding & Banquet Services Features */}
-                  {property.weddingVenuesInfo.features && (
-                    <div className="pt-4 border-t border-slate-100 relative z-10">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 mb-6">
-                        {property.weddingVenuesInfo.features.map((feat, fIdx) => (
-                          <div key={fIdx} className="p-3 rounded-xl bg-white border border-slate-200/80 flex items-start gap-2.5">
-                            <div className="w-5 h-5 rounded-full bg-rose-50 text-rose-700 flex items-center justify-center shrink-0 mt-0.5">
-                              <CheckCircle2 className="w-3.5 h-3.5" />
-                            </div>
-                            <div>
-                              <span className="text-xs font-bold text-slate-900 block leading-tight">{feat.title}</span>
-                              <span className="text-[11px] text-slate-500 block leading-snug mt-0.5 font-light">{feat.desc}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Photo Gallery Grid */}
-                  {property.weddingVenuesInfo.images && (
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 relative z-10">
-                      {property.weddingVenuesInfo.images.map((imgUrl, imgIdx) => (
-                        <div key={imgIdx} className="aspect-[16/10] rounded-2xl overflow-hidden shadow-xs border-2 border-white">
-                          <img
-                            src={imgUrl}
-                            alt={`Wedding & Banquet Venue ${imgIdx + 1}`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Direct WhatsApp Wedding & Banquet Inquiry Action */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 relative z-10 bg-cream-50 p-4 rounded-2xl border border-rose-200/60">
-                    <div>
-                      <span className="text-xs font-bold text-forest-950 block">Planning a Destination Wedding or Grand Event?</span>
-                      <span className="text-[11px] text-slate-500 font-light block">Contact our dedicated wedding coordination team for custom floor plans, menus, and dates.</span>
-                    </div>
-                    <a
-                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about booking Wedding & Banquet venues (Indoor & Outdoor) at ${property.name} for up to 120 guests. Please share available dates, catering packages, and venue floor plans.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-sm transition-colors shrink-0"
-                    >
-                      <WhatsAppIcon className="w-4 h-4" />
-                      <span>Inquire Wedding &amp; Banquet Venues</span>
-                    </a>
-                  </div>
-
-                </div>
-              )}
-
               {/* SECTION 3: ROOM CATEGORIES & PRICING */}
               {property.roomCategories && property.roomCategories.length > 0 && (
                 <div id="room-pricing" className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-200/80">
@@ -908,6 +674,405 @@ export default function PropertyDetails() {
                   </div>
 
                 </div>
+              )}
+
+              {/* MODERN LUXURY SHOWCASE: COFFEE SHOP & CAFE (For Flagship Property) — Enhanced with Framer Motion */}
+              {property.cafeInfo && (
+                <motion.section
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="bg-gradient-to-b from-white via-amber-50/30 to-white rounded-3xl p-6 sm:p-10 shadow-soft-lg border border-amber-200/70 relative overflow-hidden"
+                >
+                  {/* Ambient Glows */}
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-96 h-96 bg-forest-900/5 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Section Header Matching Luxury Editorial Design */}
+                  <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 relative z-10">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4 }}
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 border border-amber-300 text-amber-950 text-[11px] font-bold uppercase tracking-widest mb-3.5 shadow-2xs"
+                    >
+                      <Coffee className="w-3.5 h-3.5 text-amber-800" />
+                      <span>{property.cafeInfo.badge || 'Artisanal Coffee & Hillside Patisserie'}</span>
+                    </motion.div>
+
+                    <motion.h2
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-950 tracking-tight leading-tight"
+                    >
+                      {property.cafeInfo.name}
+                    </motion.h2>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.15 }}
+                      className="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-2xl mx-auto"
+                    >
+                      {property.cafeInfo.tagline}
+                    </motion.p>
+
+                    {/* Badges / Timings Bar with Framer Motion */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className="mt-5 inline-flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-xs text-slate-600"
+                    >
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-amber-200/80 shadow-2xs">
+                        <Clock className="w-3.5 h-3.5 text-amber-700" />
+                        <span className="font-semibold text-slate-800">{property.cafeInfo.timings}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-amber-200/80 shadow-2xs">
+                        <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+                        <span>Single-Origin Arabica &amp; Pour-Overs</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-amber-200/80 shadow-2xs">
+                        <Wifi className="w-3.5 h-3.5 text-forest-700" />
+                        <span>Scenic Valley Wi-Fi Lounge</span>
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  {/* 3 Modern Luxury Vertical Cards with Framer Motion Stagger & Smooth Hover Lift */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10 relative z-10">
+                    {[
+                      {
+                        tag: 'SPECIALTY ROASTS',
+                        title: 'Artisanal Espresso Bar',
+                        desc: 'Single-origin Arabica roasts, silky flat whites, pour-overs & slow cold brews extracted to perfection by master baristas.',
+                        image: property.cafeInfo.images[0] || 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80',
+                        pill1: 'Freshly Ground Daily',
+                        pill2: 'Indoor & Deck'
+                      },
+                      {
+                        tag: 'SCENIC VALLEY DECK',
+                        title: 'Mountain Mist Lounge',
+                        desc: 'Panoramic valley seating, cool mountain air, high-speed Wi-Fi & ergonomic seating ideal for remote work and quiet reading.',
+                        image: property.cafeInfo.images[1] || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80',
+                        pill1: 'High-Speed Wi-Fi',
+                        pill2: 'Panoramic Views'
+                      },
+                      {
+                        tag: 'FARM-TO-TABLE',
+                        title: 'Strawberry Patisserie',
+                        desc: 'Mahabaleshwar strawberries with fresh cream, warm flaky croissants, sourdough toasts & handcrafted artisan confectionery.',
+                        image: property.cafeInfo.images[2] || 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80',
+                        pill1: 'Baked Fresh Daily',
+                        pill2: 'Local Strawberries'
+                      }
+                    ].map((card, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.12 }}
+                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                        className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-amber-200/60 hover:border-amber-400 cursor-default"
+                      >
+                        <img
+                          src={card.image}
+                          alt={card.title}
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
+                        <div className="relative z-10 text-white">
+                          <span className="text-[10px] uppercase font-bold tracking-widest text-amber-300 block mb-1">
+                            {card.tag}
+                          </span>
+                          <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-amber-200 transition-colors">
+                            {card.title}
+                          </h3>
+                          <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
+                            {card.desc}
+                          </p>
+                          <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
+                            <span className="text-amber-300 font-semibold">{card.pill1}</span>
+                            <span className="text-white/70">{card.pill2}</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* 6 Café Highlights / Features Grid with Motion Hover */}
+                  {property.cafeInfo.features && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8 relative z-10">
+                      {property.cafeInfo.features.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 15 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: idx * 0.06 }}
+                          whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                          className="p-3.5 rounded-2xl bg-white/95 border border-amber-200/70 shadow-2xs hover:border-amber-400 hover:shadow-soft transition-all flex items-start gap-3"
+                        >
+                          <div className="w-7 h-7 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <CheckCircle2 className="w-4 h-4 text-amber-700" />
+                          </div>
+                          <div>
+                            <span className="text-xs font-bold text-forest-950 block">
+                              {item.title}
+                            </span>
+                            <span className="text-[11px] text-slate-500 font-light leading-snug mt-0.5 block">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Bottom Café Banner & Direct Inquiry Action */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative z-10 bg-forest-950 text-white rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border border-amber-500/30 shadow-soft"
+                  >
+                    <div className="text-center sm:text-left">
+                      <div className="flex items-center gap-2 justify-center sm:justify-start">
+                        <Coffee className="w-4 h-4 text-gold-400" />
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-cream-100">
+                          Visiting Mahabaleshwar? Drop In For Artisanal Coffee &amp; Views
+                        </h4>
+                      </div>
+                      <p className="text-xs text-cream-200/70 font-light mt-1">
+                        Open to both resort residents and hill-station day visitors • Complimentary parking and scenic valley seating
+                      </p>
+                    </div>
+
+                    <motion.a
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about The Reveridge Café & Coffee Shop at ${property.name}. Please share menu, specialty coffees, and table availability.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md transition-all shrink-0 cursor-pointer"
+                    >
+                      <WhatsAppIcon className="w-4 h-4" />
+                      <span>Inquire Café Menu &amp; Specials</span>
+                    </motion.a>
+                  </motion.div>
+                </motion.section>
+              )}
+
+              {/* MODERN LUXURY SHOWCASE: WEDDING AND BANQUET VENUES */}
+              {property.weddingVenuesInfo && (
+                <section className="bg-gradient-to-b from-white via-cream-50/50 to-white rounded-3xl p-6 sm:p-10 shadow-soft-lg border border-rose-200/70 relative overflow-hidden">
+                  {/* Ambient Glows */}
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Section Header Matching Luxury Editorial Design */}
+                  <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 relative z-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100/80 border border-rose-300 text-rose-950 text-[11px] font-bold uppercase tracking-widest mb-3 shadow-2xs">
+                      <Heart className="w-3.5 h-3.5 fill-rose-600 text-rose-600" />
+                      <span>{property.weddingVenuesInfo.badge || 'Premier Konkan Coast Wedding Destination'}</span>
+                    </div>
+
+                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-950 tracking-tight leading-tight">
+                      {property.weddingVenuesInfo.title}
+                    </h2>
+
+                    <p className="mt-2.5 text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
+                      {property.weddingVenuesInfo.tagline}
+                    </p>
+
+                    {/* Badges Bar */}
+                    <div className="mt-4 inline-flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-xs text-slate-600">
+                      {property.weddingVenuesInfo.capacity && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
+                          <Users className="w-3.5 h-3.5 text-rose-700" />
+                          <span className="font-semibold text-slate-800">{property.weddingVenuesInfo.capacity}</span>
+                        </span>
+                      )}
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
+                        <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+                        <span>Full Resort Buyout &amp; 60 Sea-View Rooms</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-2xs">
+                        <Waves className="w-3.5 h-3.5 text-teal-700" />
+                        <span>180° Arabian Sea Sunset Backdrops</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* 3 Modern Luxury Vertical Cards Matching Reference Design */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10 relative z-10">
+                    {/* Card 1: Arabian Sea Clifftop Sunset Lawn */}
+                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
+                      <img
+                        src={property.weddingVenuesInfo.images?.[0] || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80'}
+                        alt="Arabian Sea Sunset Lawn"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
+                      <div className="relative z-10 text-white">
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
+                          CEREMONIAL LAWNS
+                        </span>
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
+                          Arabian Sea Sunset Lawn
+                        </h3>
+                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
+                          Perched directly above the ocean with 180° sunset panoramas for pheras, grand floral mandaps &amp; cocktail receptions under starlight.
+                        </p>
+                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
+                          <span className="text-gold-300 font-semibold">Up to 120 Guests</span>
+                          <span className="text-white/70">Open-Air Ocean View</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Card 2: Grand Horizon Ballroom */}
+                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
+                      <img
+                        src={property.weddingVenuesInfo.images?.[1] || 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80'}
+                        alt="Grand Horizon Ballroom"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
+                      <div className="relative z-10 text-white">
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
+                          GRAND BALLROOM
+                        </span>
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
+                          Grand Horizon Banquet
+                        </h3>
+                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
+                          Air-conditioned pillarless indoor banquet hall with crystal chandelier illumination, acoustic design, dance floor &amp; full audio-visual stage setup.
+                        </p>
+                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
+                          <span className="text-gold-300 font-semibold">Up to 100 Guests</span>
+                          <span className="text-white/70">Indoor Climate Control</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Card 3: Poolside Patio & Full Buyouts */}
+                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
+                      <img
+                        src={property.weddingVenuesInfo.images?.[2] || 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80'}
+                        alt="Poolside Patio & Resort Buyout"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
+                      <div className="relative z-10 text-white">
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
+                          BESPOKE CELEBRATIONS
+                        </span>
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
+                          Poolside Patio &amp; Buyouts
+                        </h3>
+                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
+                          Chic poolside decks for energetic haldi &amp; mehendi ceremonies, with the exclusive opportunity for complete resort privacy and 60 sea-view rooms.
+                        </p>
+                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
+                          <span className="text-gold-300 font-semibold">60 Sea-View Rooms</span>
+                          <span className="text-white/70">Private Buyout Option</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 4 Dedicated Venue Capacity Cards */}
+                  {property.weddingVenuesInfo.venues && (
+                    <div className="mb-8 relative z-10">
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-forest-950 mb-3.5 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-gold-600" />
+                        <span>Indoor &amp; Outdoor Venues at a Glance</span>
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        {property.weddingVenuesInfo.venues.map((venue, vIdx) => (
+                          <div
+                            key={vIdx}
+                            className="p-4 rounded-2xl bg-white/90 border border-rose-200/60 shadow-2xs hover:border-rose-300 transition-all flex flex-col justify-between"
+                          >
+                            <div>
+                              <span className="text-[10px] uppercase font-bold tracking-wider text-rose-800 bg-rose-100/70 px-2 py-0.5 rounded-md inline-block mb-2">
+                                {venue.type}
+                              </span>
+                              <h4 className="font-serif font-bold text-slate-900 text-sm mb-1 leading-snug">
+                                {venue.name}
+                              </h4>
+                              <p className="text-[11px] text-slate-600 font-light leading-relaxed line-clamp-3">
+                                {venue.desc}
+                              </p>
+                            </div>
+                            <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                              <span className="text-slate-500 font-medium text-[11px]">Capacity</span>
+                              <span className="font-bold text-forest-950 text-xs">{venue.capacity}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 6 Wedding & Banquet Services Features */}
+                  {property.weddingVenuesInfo.features && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8 relative z-10">
+                      {property.weddingVenuesInfo.features.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="p-3.5 rounded-2xl bg-white/90 border border-slate-200/70 shadow-2xs hover:border-rose-300 transition-colors flex items-start gap-3"
+                        >
+                          <div className="w-7 h-7 rounded-full bg-rose-100 text-rose-900 flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-4 h-4 text-rose-700" />
+                          </div>
+                          <div>
+                            <span className="text-xs font-bold text-forest-950 block">
+                              {item.title}
+                            </span>
+                            <span className="text-[11px] text-slate-500 font-light leading-snug mt-0.5 block">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Bottom Wedding Consultation Banner */}
+                  <div className="relative z-10 bg-forest-950 text-white rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border border-rose-400/30 shadow-soft">
+                    <div className="text-center sm:text-left">
+                      <div className="flex items-center gap-2 justify-center sm:justify-start">
+                        <Heart className="w-4 h-4 fill-rose-400 text-rose-400" />
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-cream-100">
+                          Planning a Destination Wedding or Milestone Celebration?
+                        </h4>
+                      </div>
+                      <p className="text-xs text-cream-200/70 font-light mt-1">
+                        Custom floor plans, decorator coordination, chef-curated banquet tastings &amp; private group bookings
+                      </p>
+                    </div>
+
+                    <a
+                      href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about booking Wedding & Banquet venues (Indoor & Outdoor) at ${property.name} for up to 120 guests. Please share available dates, catering packages, and venue floor plans.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md hover:scale-102 transition-all shrink-0 cursor-pointer"
+                    >
+                      <WhatsAppIcon className="w-4 h-4" />
+                      <span>Inquire Wedding &amp; Banquet Venues</span>
+                    </a>
+                  </div>
+                </section>
               )}
 
               {/* SECTION 4: FACILITIES — COMPLETE LIST (16 Items) */}

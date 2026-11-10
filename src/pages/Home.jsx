@@ -39,8 +39,8 @@ export default function Home() {
         </div>
 
         <AboutPreview />
-        <FeaturedRooms />
         <DestinationsStrip />
+        <FeaturedRooms />
         <AmenitiesStrip />
         <SpaHighlight />
         <GalleryPreview />
