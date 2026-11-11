@@ -21,13 +21,15 @@ export const siteConfig = {
     full: "Panchgani - Mahabaleshwar Rd, Metgutad, Maharashtra 412806"
   },
   contact: {
-    phone: "094206 33577",
-    phoneDisplay: "+91 94206 33577",
-    altPhone: "+91 94206 33578",
+    phone: "+91 94226 00577",
+    phoneDisplay: "+91 94226 00577",
+    altPhone: "+91 94206 33577",
     whatsapp: "919420633577", // digits only for wa.me
-    email: "reservations@cloudgreenresort.com",
-    supportEmail: "info@cloudgreenresort.com",
-    existingSite: "reveridge.com"
+    email: "reservations@reveridge.com",
+    supportEmail: "info@reveridge.com",
+    website: "www.reveridge.com",
+    websiteUrl: "https://www.reveridge.com",
+    existingSite: "www.reveridge.com"
   },
   coordinates: {
     lat: 17.9255,
@@ -35,10 +37,12 @@ export const siteConfig = {
   },
   googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15214.35415270923!2d73.6845653!3d17.9255423!2m3!1f0!2f0!3f0!3m2!1i1024!2f768!4f13.1!3m3!1m2!1s0x3bc26511a3d0cb1b%3A0x64e813f8c85854be!2sMetgutad%2C%20Maharashtra%20412806!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
   socials: {
-    facebook: "https://facebook.com/cloudgreenresort",
-    instagram: "https://instagram.com/cloudgreenresort",
+    facebook: "https://www.facebook.com/reveridge/",
+    facebookLabel: "Reveridge — Elevated Escapes",
+    instagram: "https://www.instagram.com/reveridge/",
+    instagramHandle: "@reveridge",
     tripadvisor: "https://tripadvisor.com",
-    googleReviews: "https://maps.google.com/?q=Cloudgreen+Resort+Metgutad+Mahabaleshwar"
+    googleReviews: "https://maps.google.com/?q=Reveridge+Boutique+Escapes+Mahabaleshwar"
   },
   navLinks: [
     { label: "Home", path: "/" },

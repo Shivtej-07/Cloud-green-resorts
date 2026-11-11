@@ -8,7 +8,7 @@ const DataContext = createContext(null);
 
 const STORAGE_KEYS = {
   ROOMS: 'cloudgreen_rooms_v1',
-  SITE_CONFIG: 'cloudgreen_site_config_v1',
+  SITE_CONFIG: 'reveridge_site_config_v2',
   GALLERY: 'cloudgreen_gallery_v1',
   PROPERTIES: 'cloudgreen_properties_v1',
   OFFERS: 'cloudgreen_offers_v1',

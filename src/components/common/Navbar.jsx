@@ -7,7 +7,6 @@ import {
   Phone, 
   Calendar, 
   Globe,
-  ShieldCheck,
   MapPin,
   ChevronDown,
   Sparkles,
@@ -69,7 +68,10 @@ export default function Navbar() {
   ];
 
   // Determine if we are on a page with dark cinematic full-screen hero where navbar starts transparent
-  const hasCinematicHero = location.pathname === '/' || location.pathname.startsWith('/destinations');
+  const hasCinematicHero =
+    location.pathname === '/' ||
+    location.pathname.startsWith('/destinations') ||
+    location.pathname.startsWith('/hospitality');
   const showSolidNav = isScrolled || !hasCinematicHero;
 
   return (
@@ -216,19 +218,6 @@ export default function Navbar() {
 
             {/* Right Action Buttons */}
             <div className="hidden sm:flex items-center gap-2">
-              <Link
-                to="/admin"
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
-                  showSolidNav
-                    ? 'text-forest-900 border-forest-200 hover:bg-forest-50 hover:border-forest-300'
-                    : 'text-cream-100 border-white/30 hover:bg-white/20 backdrop-blur-sm'
-                }`}
-                title="Staff & Admin Control Panel"
-              >
-                <ShieldCheck className="w-3.5 h-3.5 text-gold-400" />
-                <span>Admin</span>
-              </Link>
-
               <Button
                 to="/booking"
                 variant="gold"
@@ -467,15 +456,6 @@ export default function Navbar() {
                 <Phone className="w-3.5 h-3.5 text-gold-400" />
                 <span>Call {siteConfig.contact.phoneDisplay}</span>
               </a>
-
-              <Link
-                to="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 py-2 rounded-full border border-gold-400/30 text-gold-400 hover:bg-gold-500/10 text-xs font-semibold transition-colors"
-              >
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Admin &amp; Staff Login</span>
-              </Link>
 
               <p className="text-center text-[10px] text-cream-300/60 pt-1">
                 Panchgani - Mahabaleshwar Rd, Metgutad

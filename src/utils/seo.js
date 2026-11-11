@@ -10,7 +10,7 @@ export function getHotelSchema() {
     "name": siteConfig.name,
     "alternateName": siteConfig.nativeName,
     "description": "2-star hill-station boutique resort & spa nestled in Metgutad on Panchgani-Mahabaleshwar Road. Features swimming pool, luxury spa, valley views, free breakfast and pet-friendly accommodations.",
-    "url": "https://cloudgreenresort.com",
+    "url": "https://www.reveridge.com",
     "telephone": siteConfig.contact.phone,
     "priceRange": "₹1,897 - ₹5,299",
     "starRating": {

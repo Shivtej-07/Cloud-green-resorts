@@ -18,8 +18,8 @@ export default function FeaturedRooms() {
       tag: 'EXCLUSIVE OFFERS',
       title: 'Special Stay Packages',
       description: 'Explore seasonal offers, family packages, romantic getaways, and exclusive deals designed for memorable luxury experiences at every stay.',
-      linkText: 'EXPLORE ACTIVITIES',
-      link: '/destinations',
+      linkText: 'EXPLORE PACKAGES',
+      link: '/hospitality/special-packages',
       badge: 'Curated Offers',
       image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80'
     },
@@ -28,8 +28,8 @@ export default function FeaturedRooms() {
       tag: 'PREMIUM COMFORT',
       title: 'Luxury Stay Experience',
       description: 'Enjoy elegant rooms, scenic views, premium amenities, and thoughtfully designed spaces for relaxation, family vacations, and memorable escapes.',
-      linkText: 'EXPLORE LOCATION',
-      link: '/destinations',
+      linkText: 'EXPLORE STAYS',
+      link: '/hospitality/luxury-stay',
       badge: 'Boutique Stays',
       image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80'
     },
@@ -38,8 +38,8 @@ export default function FeaturedRooms() {
       tag: 'PERSONALIZED SERVICE',
       title: 'Exceptional Hospitality',
       description: 'Experience warm service, 24/7 guest support, curated stays, and seamless hospitality designed to make every visit comfortable and unforgettable.',
-      linkText: 'VIEW FACILITIES',
-      link: '/about',
+      linkText: 'VIEW HOSPITALITY',
+      link: '/hospitality/exceptional-hospitality',
       badge: 'Personalized Care',
       image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80'
     },
@@ -48,8 +48,8 @@ export default function FeaturedRooms() {
       tag: 'WELLNESS & LEISURE',
       title: 'Relaxation & Retreats',
       description: 'Rejuvenate your senses with holistic spa rituals, herbal therapies, steam, sauna, and restorative wellness escapes in tranquil nature.',
-      linkText: 'EXPLORE ACTIVITIES',
-      link: '/spa',
+      linkText: 'EXPLORE WELLNESS',
+      link: '/hospitality/relaxation-retreats',
       badge: 'Spa & Wellness',
       image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80'
     },
@@ -58,8 +58,8 @@ export default function FeaturedRooms() {
       tag: 'CELEBRATIONS & EVENTS',
       title: 'Weddings & Gatherings',
       description: 'Host destination weddings, family celebrations, corporate events, and special occasions in elegant spaces with unforgettable scenic backdrops.',
-      linkText: 'CHECK OUT',
-      link: '/destinations/dapoli',
+      linkText: 'EXPLORE VENUES',
+      link: '/hospitality/weddings-gatherings',
       badge: 'Up to 120 Guests',
       image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80'
     },
@@ -68,8 +68,8 @@ export default function FeaturedRooms() {
       tag: 'SCENIC DESTINATIONS',
       title: 'Nature & Luxury Views',
       description: 'Immerse yourself in breathtaking mountain mist, lush Sahyadri valleys, and elevated Arabian Sea horizons from sunrise to sunset.',
-      linkText: 'EXPLORE DESTINATIONS',
-      link: '/destinations',
+      linkText: 'EXPLORE SCENIC VIEWS',
+      link: '/hospitality/nature-luxury-views',
       badge: 'Scenic Views',
       image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80'
     },
@@ -79,7 +79,7 @@ export default function FeaturedRooms() {
       title: 'The Reveridge Café & Coffee Shop',
       description: 'Single-origin Arabica roasts, scenic mountain mist decks, freshly baked viennoiserie, and farm-fresh Mahabaleshwar strawberries.',
       linkText: 'EXPLORE CAFÉ',
-      link: '/destinations/mahabaleshwar',
+      link: '/hospitality/cafe-coffee-shop',
       badge: 'Open Daily 7:30 AM',
       image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80'
     }
