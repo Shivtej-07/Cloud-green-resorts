@@ -1327,16 +1327,26 @@ export default function PropertyDetails() {
               {/* SECTION 7: NEARBY ATTRACTIONS (8 Attractions with Distances) */}
               {property.nearbyAttractions && property.nearbyAttractions.length > 0 && (
                 <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-slate-200/80">
-                  <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-slate-100">
-                    <div className="w-8 h-8 rounded-xl bg-forest-800 text-gold-400 flex items-center justify-center">
-                      <Navigation className="w-4 h-4" />
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-6 border-b border-slate-100">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-forest-800 text-gold-400 flex items-center justify-center shrink-0">
+                        <Navigation className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h2 className="font-serif text-xl sm:text-2xl font-bold text-forest-950">
+                          Nearby Attractions
+                        </h2>
+                        <p className="text-xs text-slate-500">Key sightseeing points with approximate distances</p>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="font-serif text-xl sm:text-2xl font-bold text-forest-950">
-                        Nearby Attractions
-                      </h2>
-                      <p className="text-xs text-slate-500">Key sightseeing points with approximate distances</p>
-                    </div>
+
+                    <Link
+                      to="/attractions"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-forest-800 hover:text-teal-700 transition-colors shrink-0"
+                    >
+                      <span>View Sightseeing Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">

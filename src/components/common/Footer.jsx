@@ -240,7 +240,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-300/60 gap-5">
           <p className="text-center sm:text-left leading-relaxed">
-            © {currentYear} {siteConfig?.name}. All rights reserved. Metgutad, Mahabaleshwar–Panchgani, Maharashtra.
+            © {currentYear} REVERIDGE. All rights reserved.
           </p>
 
           <motion.div
