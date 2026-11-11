@@ -1,14 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Home, Bed, Phone, Compass } from 'lucide-react';
+import { Home, Phone, Compass } from 'lucide-react';
 import Button from '../components/common/Button';
 
 export default function NotFound() {
   return (
     <>
       <Helmet>
-        <title>Page Not Found | Cloudgreen Resort &amp; Spa</title>
+        <title>Page Not Found | Reveridge Boutique Escapes</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
@@ -27,7 +27,7 @@ export default function NotFound() {
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            The page or trail you are looking for seems to have drifted into the clouds. Let's guide you back to the warmth of Cloudgreen Resort.
+            The page or trail you are looking for seems to have drifted into the clouds. Let's guide you back to the warmth of Reveridge Hospitality.
           </p>
 
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
@@ -35,8 +35,8 @@ export default function NotFound() {
               Return to Homepage
             </Button>
 
-            <Button to="/rooms" variant="outline" size="md" icon={Bed} iconPosition="left">
-              Explore Our Rooms
+            <Button to="/destinations" variant="outline" size="md" icon={Compass} iconPosition="left">
+              Explore Destinations
             </Button>
 
             <Button to="/contact" variant="ghost" size="md" icon={Phone} iconPosition="left">

@@ -16,7 +16,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import WhatsAppIcon from './WhatsAppIcon';
 
 export default function Footer() {
-  const { siteConfig, rooms } = useData();
+  const { siteConfig } = useData();
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
@@ -96,9 +96,6 @@ export default function Footer() {
                 <Link to="/about" className="text-cream-300/80 hover:text-gold-400 transition-colors">About Our Resort</Link>
               </li>
               <li>
-                <Link to="/rooms" className="text-cream-300/80 hover:text-gold-400 transition-colors">Rooms &amp; Suites</Link>
-              </li>
-              <li>
                 <Link to="/spa" className="text-cream-300/80 hover:text-gold-400 transition-colors">Spa &amp; Wellness</Link>
               </li>
               <li>
@@ -113,7 +110,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Room Types */}
+          {/* Col 3: Destination Properties */}
           <div>
             <h4 className="font-serif text-base font-semibold text-white tracking-wider uppercase mb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-gold-400"></span>
@@ -121,23 +118,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/rooms/deluxe-double-room" className="text-cream-300/80 hover:text-gold-400 transition-colors">
-                  Deluxe Double Room <span className="text-[11px] text-gold-400 block">From ₹1,897/night</span>
+                <Link to="/destinations/mahabaleshwar-resort" className="text-cream-300/80 hover:text-gold-400 transition-colors">
+                  Mahabaleshwar Resort &amp; Spa <span className="text-[11px] text-gold-400 block">From ₹2,500/night</span>
                 </Link>
               </li>
               <li>
-                <Link to="/rooms/premium-valley-view" className="text-cream-300/80 hover:text-gold-400 transition-colors">
-                  Premium Valley View Room
+                <Link to="/destinations/mahabaleshwar-villa-6bhk" className="text-cream-300/80 hover:text-gold-400 transition-colors">
+                  Mahabaleshwar 6 BHK Villa
                 </Link>
               </li>
               <li>
-                <Link to="/rooms/mountain-view-family-suite" className="text-cream-300/80 hover:text-gold-400 transition-colors">
-                  Mountain View Family Suite
+                <Link to="/destinations/lingmala-villa-4bhk" className="text-cream-300/80 hover:text-gold-400 transition-colors">
+                  Lingmala 4 BHK Villa
                 </Link>
               </li>
               <li>
-                <Link to="/rooms/executive-cottage" className="text-cream-300/80 hover:text-gold-400 transition-colors">
-                  Executive Garden Cottage
+                <Link to="/destinations/matheran-cottage-3bhk" className="text-cream-300/80 hover:text-gold-400 transition-colors">
+                  Matheran 3 BHK Cottage
+                </Link>
+              </li>
+              <li>
+                <Link to="/destinations/dapoli-resort-spa" className="text-cream-300/80 hover:text-gold-400 transition-colors">
+                  Dapoli Coastal Resort &amp; Spa
                 </Link>
               </li>
               <li className="pt-2">

@@ -12,7 +12,6 @@ import {
   ArrowUpRight,
   CheckCircle2,
   ChevronRight,
-  ChevronLeft,
   Compass,
   Sparkles,
   Eye,
@@ -31,7 +30,7 @@ import {
   Navigation,
   ArrowRight,
   Layers,
-  ChevronDown
+  Flower2
 } from 'lucide-react';
 import { destinations, getPropertyById } from '../data/destinations';
 import { siteConfig } from '../data/siteConfig';
@@ -54,14 +53,16 @@ export default function PropertyDetails() {
     setActivePhotoIdx(0);
   }, [property.id]);
 
+  const images = property?.images?.length ? property.images : [];
+
   // Continuous background image auto-play with Framer Motion (5s interval)
   useEffect(() => {
-    if (!property?.images?.length || property.images.length <= 1) return;
+    if (images.length <= 1) return;
     const interval = setInterval(() => {
-      setActivePhotoIdx((prev) => (prev + 1) % property.images.length);
+      setActivePhotoIdx((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [property?.images?.length]);
+  }, [images.length]);
 
   const whatsappInquiryUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I am inquiring about staying at ${property.name}. Please share tariffs and availability.`)}`;
   const callUrl = `tel:${siteConfig.contact.phone}`;
@@ -84,136 +85,164 @@ export default function PropertyDetails() {
         <link rel="canonical" href={`https://reveridge.com/destinations/${property.id}`} />
       </Helmet>
 
-      {/* Full-Screen True 100vh Cinematic Hero with Continuous Auto-Playing Background Image Slider */}
+      {/* Full-Screen 100dvh Editorial Cinematic Hero (Unobstructed Center Photography + Corner-Balanced Framing) */}
       <section 
-        className="relative h-screen h-[100dvh] min-h-[100dvh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8 overflow-hidden bg-forest-950 text-white"
+        className="relative min-h-[100dvh] lg:h-[100dvh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-7 sm:pb-10 overflow-hidden bg-forest-950 text-white"
       >
-        {/* Full Background Image Slider using Framer Motion - Auto-plays like a luxury brand */}
+        {/* Full-Bleed Background Image Slider using Framer Motion */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <AnimatePresence mode="sync">
             <motion.div
-              key={activePhotoIdx}
-              initial={{ opacity: 0, scale: 1.08 }}
+              key={`${property.id}-${activePhotoIdx}`}
+              initial={{ opacity: 0, scale: 1.07 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1.0] }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${property.images[activePhotoIdx] || property.images[0]})` }}
+              style={{ backgroundImage: `url(${images[activePhotoIdx] || images[0]})` }}
             />
           </AnimatePresence>
 
-          {/* Cinematic Multi-Layer Gradient Overlays for 100% Text Clarity */}
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/60 to-black/80" />
-          <div className="absolute inset-0 bg-black/30 backdrop-blur-[0.5px]" />
+          {/* Subtle Perimeter Scrims — Leaves Center Photography Open & Vibrant */}
+          <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-forest-950/95 via-forest-950/65 to-transparent" />
         </div>
 
-        {/* Top: Breadcrumbs & Badges */}
+        {/* Upper Zone: Minimal Top Breadcrumb & Rating Bar */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* Breadcrumbs */}
-          <nav className="flex items-center gap-2 text-xs text-cream-200/80 font-medium mb-6">
-            <Link to="/" className="hover:text-gold-300 transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-cream-300/60" />
-            <Link to="/destinations" className="hover:text-gold-300 transition-colors">Destinations</Link>
-            <ChevronRight className="w-3.5 h-3.5 text-cream-300/60" />
-            <span className="text-gold-400 font-semibold truncate">{property.shortName}</span>
-          </nav>
+          <motion.div
+            key={`top-${property.id}`}
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center justify-between gap-3"
+          >
+            {/* Left: Breadcrumbs + Compact Property Identity Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <nav className="flex items-center gap-1.5 text-[11px] sm:text-xs text-cream-200/85 font-medium bg-black/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15">
+                <Link to="/" className="hover:text-gold-300 transition-colors">Home</Link>
+                <ChevronRight className="w-3 h-3 text-cream-300/60" />
+                <Link to="/destinations" className="hover:text-gold-300 transition-colors">Destinations</Link>
+                <ChevronRight className="w-3 h-3 text-cream-300/60" />
+                <span className="text-gold-400 font-semibold truncate">{property.shortName}</span>
+              </nav>
 
-          {/* Badges Row */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <span className="px-3 py-1 rounded-full bg-forest-900/90 text-gold-400 border border-gold-500/40 text-[11px] sm:text-xs font-bold tracking-widest uppercase shadow-md backdrop-blur-md">
+              <span className="px-3 py-1.5 rounded-full bg-forest-900/85 text-gold-400 border border-gold-500/35 text-[10px] sm:text-[11px] font-bold tracking-widest uppercase backdrop-blur-md">
                 {property.propertyCode}
               </span>
-              <span className="px-3 py-1 rounded-full bg-black/40 border border-gold-400/40 text-cream-100 text-[11px] sm:text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+              <span className="hidden sm:inline-flex px-3 py-1.5 rounded-full bg-black/35 border border-gold-400/35 text-cream-100 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider backdrop-blur-md">
                 ★ {property.starEquivalent || "5 Star Boutique"}
               </span>
+              {property.bhk && (
+                <span className="px-3 py-1.5 rounded-full bg-gold-500 text-forest-950 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
+                  {property.bhk}
+                </span>
+              )}
               {property.badge && (
-                <span className="px-3 py-1 rounded-full bg-teal-900/70 border border-teal-400/40 text-teal-200 text-[11px] sm:text-xs font-medium backdrop-blur-md">
+                <span className="hidden md:inline-flex px-3 py-1.5 rounded-full bg-teal-900/65 border border-teal-400/35 text-teal-200 text-[11px] font-medium backdrop-blur-md">
                   {property.badge}
                 </span>
               )}
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-cream-200 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            {/* Right: Verified Guest Rating Pill */}
+            <div className="inline-flex items-center gap-1.5 text-xs text-cream-100 bg-black/35 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-lg">
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               <span className="font-bold text-white">{property.rating}</span>
-              <span className="text-cream-300/80">({property.reviewCount} verified guest reviews)</span>
+              <span className="text-cream-300/80 hidden sm:inline">({property.reviewCount} verified reviews)</span>
+              <span className="text-cream-300/80 sm:hidden">({property.reviewCount})</span>
             </div>
-          </div>
+          </motion.div>
+        </div>
 
-          {/* Title, Location & Quick Booking Actions */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-            <div className="max-w-3xl">
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight drop-shadow-md">
-                {property.name}
-              </h1>
+        {/* Lower Zone: Editorial Two-Corner Typography & Actions Arrangement */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-auto pt-12 lg:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end">
 
-              <p className="mt-2.5 text-xs sm:text-sm text-gold-300 font-semibold uppercase tracking-wider flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-gold-400 shrink-0" />
+            {/* Bottom-Left Column: Location Eyebrow + Serif Display Title */}
+            <motion.div
+              key={`bottom-left-${property.id}`}
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-7 flex flex-col items-start"
+            >
+              {/* Location & Elevation Eyebrow */}
+              <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-gold-300 mb-3">
+                <MapPin className="w-3.5 h-3.5 text-gold-400 shrink-0" />
                 <span>{property.location}</span>
                 {property.altitude && (
-                  <span className="text-cream-200/70 font-normal">
+                  <span className="hidden sm:inline text-cream-200/75 font-normal normal-case tracking-normal">
                     • {property.altitude}
                   </span>
                 )}
-              </p>
+              </div>
 
-              <p className="mt-3 text-sm sm:text-base text-cream-100/90 leading-relaxed font-light drop-shadow-sm">
+              {/* Bold Editorial Serif Headline */}
+              <h1 className="font-serif text-3xl sm:text-5xl xl:text-[3.65rem] font-bold text-white tracking-tight leading-[1.06] drop-shadow-2xl max-w-2xl">
+                {property.name}
+              </h1>
+            </motion.div>
+
+            {/* Bottom-Right Column: Narrative Description + Editorial Tariff & Luxury CTA Pill Row */}
+            <motion.div
+              key={`bottom-right-${property.id}`}
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-5 flex flex-col items-start lg:items-end lg:text-right"
+            >
+              <p className="text-sm sm:text-[15px] text-cream-100/90 leading-relaxed font-light max-w-md drop-shadow-sm">
                 {property.tagline}
               </p>
-            </div>
 
-            {/* Price & Primary Header Actions */}
-            <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 shrink-0 bg-black/45 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-white/20 shadow-xl">
-              <div className="text-left lg:text-right">
-                <span className="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-gold-400 block">
-                  Starting Tariff
-                </span>
-                <div className="flex items-baseline gap-1">
-                  <span className="font-serif text-3xl sm:text-4xl font-bold text-white drop-shadow-sm">
-                    ₹{property.startingPrice.toLocaleString()}
+              {/* Subtle Divider + Tariff Readout */}
+              <div className="mt-4 pt-3.5 border-t border-white/15 w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col sm:items-center lg:items-end justify-between gap-4">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gold-400 block">
+                    Starting Tariff
                   </span>
-                  <span className="text-xs text-cream-200 font-normal">/ night</span>
+                  <div className="flex items-baseline gap-1.5 lg:justify-end mt-0.5">
+                    <span className="font-serif text-3xl sm:text-4xl font-bold text-white leading-none">
+                      ₹{property.startingPrice.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-cream-200/80 font-normal">/ night</span>
+                  </div>
+                  <span className="text-[11px] text-cream-300/75 block mt-1">
+                    Taxes applicable • Best rate direct
+                  </span>
                 </div>
-                <span className="text-[10px] text-cream-300/80 block mt-0.5">Taxes applicable • Best rate direct</span>
-              </div>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <a
-                  href={whatsappInquiryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold shadow-md transition-all hover:scale-102"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  <span>WhatsApp</span>
-                </a>
-                <Button
-                  to={`/booking?property=${property.id}`}
-                  variant="gold"
-                  size="sm"
-                  className="px-5 py-2.5 text-xs font-bold shadow-lg text-forest-950 hover:scale-102"
-                >
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Check Dates</span>
-                </Button>
+                {/* High-Contrast Pill CTAs */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <motion.a
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    href={whatsappInquiryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/12 hover:bg-[#25D366] text-white backdrop-blur-md border border-white/25 hover:border-[#25D366] text-xs font-semibold shadow-lg transition-colors"
+                  >
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </motion.a>
+
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      to={`/booking?property=${property.id}`}
+                      className="inline-flex items-center gap-2.5 pl-5 pr-2 py-1.5 rounded-full bg-cream-100 hover:bg-white text-forest-950 text-xs sm:text-sm font-bold shadow-xl transition-colors group"
+                    >
+                      <span>Check Dates</span>
+                      <span className="w-7 h-7 rounded-full bg-forest-950 text-gold-400 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </Link>
+                  </motion.div>
+                </div>
               </div>
-            </div>
+            </motion.div>
+
           </div>
-        </div>
-
-        {/* Bottom: Smooth Scroll Down Prompt */}
-        <div 
-          onClick={() => {
-            const el = document.getElementById('property-content');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="relative z-10 flex flex-col items-center justify-center cursor-pointer group text-cream-200/80 hover:text-gold-300 transition-colors select-none pb-1"
-        >
-          <span className="text-[10px] uppercase tracking-widest font-semibold mb-1 group-hover:translate-y-0.5 transition-transform">
-            Scroll to Explore Property Details
-          </span>
-          <ChevronDown className="w-4 h-4 animate-bounce text-gold-400" />
         </div>
       </section>
 
@@ -745,32 +774,20 @@ export default function PropertyDetails() {
                     </motion.div>
                   </div>
 
-                  {/* 3 Modern Luxury Vertical Cards with Framer Motion Stagger & Smooth Hover Lift */}
+                  {/* 3 Modern Luxury Vertical Photo Cards with Framer Motion — Pure Photography */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10 relative z-10">
                     {[
                       {
-                        tag: 'SPECIALTY ROASTS',
-                        title: 'Artisanal Espresso Bar',
-                        desc: 'Single-origin Arabica roasts, silky flat whites, pour-overs & slow cold brews extracted to perfection by master baristas.',
-                        image: property.cafeInfo.images[0] || 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80',
-                        pill1: 'Freshly Ground Daily',
-                        pill2: 'Indoor & Deck'
+                        alt: 'Artisanal Espresso Bar at The Reveridge Café',
+                        image: property.cafeInfo.images[0] || 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80'
                       },
                       {
-                        tag: 'SCENIC VALLEY DECK',
-                        title: 'Mountain Mist Lounge',
-                        desc: 'Panoramic valley seating, cool mountain air, high-speed Wi-Fi & ergonomic seating ideal for remote work and quiet reading.',
-                        image: property.cafeInfo.images[1] || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80',
-                        pill1: 'High-Speed Wi-Fi',
-                        pill2: 'Panoramic Views'
+                        alt: 'Mountain Mist Valley Deck Lounge at The Reveridge Café',
+                        image: property.cafeInfo.images[1] || 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80'
                       },
                       {
-                        tag: 'FARM-TO-TABLE',
-                        title: 'Strawberry Patisserie',
-                        desc: 'Mahabaleshwar strawberries with fresh cream, warm flaky croissants, sourdough toasts & handcrafted artisan confectionery.',
-                        image: property.cafeInfo.images[2] || 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80',
-                        pill1: 'Baked Fresh Daily',
-                        pill2: 'Local Strawberries'
+                        alt: 'Strawberry Patisserie & Coffee at The Reveridge Café',
+                        image: property.cafeInfo.images[2] || 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80'
                       }
                     ].map((card, idx) => (
                       <motion.div
@@ -780,29 +797,13 @@ export default function PropertyDetails() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: idx * 0.12 }}
                         whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                        className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-amber-200/60 hover:border-amber-400 cursor-default"
+                        className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 border border-amber-200/60 hover:border-amber-400"
                       >
                         <img
                           src={card.image}
-                          alt={card.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                          alt={card.alt}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
-                        <div className="relative z-10 text-white">
-                          <span className="text-[10px] uppercase font-bold tracking-widest text-amber-300 block mb-1">
-                            {card.tag}
-                          </span>
-                          <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-amber-200 transition-colors">
-                            {card.title}
-                          </h3>
-                          <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
-                            {card.desc}
-                          </p>
-                          <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
-                            <span className="text-amber-300 font-semibold">{card.pill1}</span>
-                            <span className="text-white/70">{card.pill2}</span>
-                          </div>
-                        </div>
                       </motion.div>
                     ))}
                   </div>
@@ -871,6 +872,182 @@ export default function PropertyDetails() {
                 </motion.section>
               )}
 
+              {/* MODERN LUXURY SHOWCASE: WELLNESS SPA (Mahabaleshwar & Dapoli) — Framer Motion */}
+              {property.spaInfo && (
+                <motion.section
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="bg-gradient-to-b from-white via-emerald-50/35 to-white rounded-3xl p-6 sm:p-10 shadow-soft-lg border border-emerald-200/70 relative overflow-hidden"
+                >
+                  {/* Ambient Glows */}
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                  {/* Section Header */}
+                  <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 relative z-10">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4 }}
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-950 text-[11px] font-bold uppercase tracking-widest mb-3.5 shadow-2xs"
+                    >
+                      <Flower2 className="w-3.5 h-3.5 text-emerald-800" />
+                      <span>{property.spaInfo.badge || 'Wellness Spa • Mahabaleshwar & Dapoli'}</span>
+                    </motion.div>
+
+                    <motion.h2
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-950 tracking-tight leading-tight"
+                    >
+                      {property.spaInfo.name}
+                    </motion.h2>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.15 }}
+                      className="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-2xl mx-auto"
+                    >
+                      {property.spaInfo.tagline}
+                    </motion.p>
+
+                    {/* Badges / Highlights Bar with Framer Motion */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      className="mt-5 inline-flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-xs text-slate-600"
+                    >
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-emerald-200/80 shadow-2xs">
+                        <Clock className="w-3.5 h-3.5 text-emerald-700" />
+                        <span className="font-semibold text-slate-800">{property.spaInfo.timings}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-emerald-200/80 shadow-2xs">
+                        <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+                        <span>Massage, Treatments &amp; Therapies</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 border border-emerald-200/80 shadow-2xs">
+                        <Flame className="w-3.5 h-3.5 text-amber-600" />
+                        <span>Thermal Steam &amp; Sauna Suites</span>
+                      </span>
+                    </motion.div>
+                  </div>
+
+                  {/* 3 Modern Luxury Vertical Photo Cards with Framer Motion — Pure Photography */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10 relative z-10">
+                    {[
+                      {
+                        alt: 'Signature Holistic Massage at The Reveridge Wellness Spa',
+                        image: property.spaInfo.images?.[0] || 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80'
+                      },
+                      {
+                        alt: 'Ayurvedic Treatments & Therapies Sanctuary',
+                        image: property.spaInfo.images?.[1] || 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1000&q=80'
+                      },
+                      {
+                        alt: 'Aromatherapy, Steam & Sauna Rejuvenation',
+                        image: property.spaInfo.images?.[2] || 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80'
+                      }
+                    ].map((card, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.12 }}
+                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                        className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 border border-emerald-200/60 hover:border-emerald-400"
+                      >
+                        <img
+                          src={card.image}
+                          alt={card.alt}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* 6 Wellness Spa Features Grid with Motion Hover */}
+                  {property.spaInfo.features && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8 relative z-10">
+                      {property.spaInfo.features.map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 15 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: idx * 0.06 }}
+                          whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                          className="p-3.5 rounded-2xl bg-white/95 border border-emerald-200/70 shadow-2xs hover:border-emerald-400 hover:shadow-soft transition-all flex items-start gap-3"
+                        >
+                          <div className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                          </div>
+                          <div>
+                            <span className="text-xs font-bold text-forest-950 block">
+                              {item.title}
+                            </span>
+                            <span className="text-[11px] text-slate-500 font-light leading-snug mt-0.5 block">
+                              {item.desc}
+                            </span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Bottom Spa Booking & Exploration Banner */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="relative z-10 bg-forest-950 text-white rounded-2xl p-5 sm:p-6 flex flex-col lg:flex-row items-center justify-between gap-4 border border-emerald-500/30 shadow-soft"
+                  >
+                    <div className="text-center lg:text-left">
+                      <div className="flex items-center gap-2 justify-center lg:justify-start">
+                        <Flower2 className="w-4 h-4 text-gold-400" />
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-cream-100">
+                          Wellness Spa (Mahabaleshwar &amp; Dapoli)
+                        </h4>
+                      </div>
+                      <p className="text-xs text-cream-200/75 font-light mt-1">
+                        Massage, treatments, holistic therapies, aromatic steam &amp; cedarwood sauna • Private and couple therapy suites
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0">
+                      <Link
+                        to="/spa"
+                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-cream-100 border border-white/20 text-xs font-semibold transition-all"
+                      >
+                        <span>Explore Spa Menu</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                      <motion.a
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(`Hello Reveridge! I would like to book a Wellness Spa session (massage, treatments, therapies, steam & sauna) at ${property.name}. Please share available slots.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-md transition-all cursor-pointer"
+                      >
+                        <WhatsAppIcon className="w-4 h-4" />
+                        <span>Book Spa Session</span>
+                      </motion.a>
+                    </div>
+                  </motion.div>
+                </motion.section>
+              )}
+
               {/* MODERN LUXURY SHOWCASE: WEDDING AND BANQUET VENUES */}
               {property.weddingVenuesInfo && (
                 <section className="bg-gradient-to-b from-white via-cream-50/50 to-white rounded-3xl p-6 sm:p-10 shadow-soft-lg border border-rose-200/70 relative overflow-hidden">
@@ -912,82 +1089,38 @@ export default function PropertyDetails() {
                     </div>
                   </div>
 
-                  {/* 3 Modern Luxury Vertical Cards Matching Reference Design */}
+                  {/* 3 Modern Luxury Vertical Photo Cards with Framer Motion — Pure Photography */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10 relative z-10">
-                    {/* Card 1: Arabian Sea Clifftop Sunset Lawn */}
-                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
-                      <img
-                        src={property.weddingVenuesInfo.images?.[0] || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80'}
-                        alt="Arabian Sea Sunset Lawn"
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
-                      <div className="relative z-10 text-white">
-                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
-                          CEREMONIAL LAWNS
-                        </span>
-                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
-                          Arabian Sea Sunset Lawn
-                        </h3>
-                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
-                          Perched directly above the ocean with 180° sunset panoramas for pheras, grand floral mandaps &amp; cocktail receptions under starlight.
-                        </p>
-                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
-                          <span className="text-gold-300 font-semibold">Up to 120 Guests</span>
-                          <span className="text-white/70">Open-Air Ocean View</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Card 2: Grand Horizon Ballroom */}
-                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
-                      <img
-                        src={property.weddingVenuesInfo.images?.[1] || 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80'}
-                        alt="Grand Horizon Ballroom"
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
-                      <div className="relative z-10 text-white">
-                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
-                          GRAND BALLROOM
-                        </span>
-                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
-                          Grand Horizon Banquet
-                        </h3>
-                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
-                          Air-conditioned pillarless indoor banquet hall with crystal chandelier illumination, acoustic design, dance floor &amp; full audio-visual stage setup.
-                        </p>
-                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
-                          <span className="text-gold-300 font-semibold">Up to 100 Guests</span>
-                          <span className="text-white/70">Indoor Climate Control</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Card 3: Poolside Patio & Full Buyouts */}
-                    <div className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 flex flex-col justify-end p-6 sm:p-7 border border-rose-200/60 hover:border-rose-400">
-                      <img
-                        src={property.weddingVenuesInfo.images?.[2] || 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80'}
-                        alt="Poolside Patio & Resort Buyout"
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity" />
-                      <div className="relative z-10 text-white">
-                        <span className="text-[10px] uppercase font-bold tracking-widest text-gold-300 block mb-1">
-                          BESPOKE CELEBRATIONS
-                        </span>
-                        <h3 className="font-serif text-xl sm:text-2xl font-bold leading-tight group-hover:text-gold-200 transition-colors">
-                          Poolside Patio &amp; Buyouts
-                        </h3>
-                        <p className="mt-2 text-xs text-cream-100/85 font-light leading-relaxed line-clamp-3">
-                          Chic poolside decks for energetic haldi &amp; mehendi ceremonies, with the exclusive opportunity for complete resort privacy and 60 sea-view rooms.
-                        </p>
-                        <div className="mt-3.5 pt-2.5 border-t border-white/20 flex items-center justify-between text-[11px]">
-                          <span className="text-gold-300 font-semibold">60 Sea-View Rooms</span>
-                          <span className="text-white/70">Private Buyout Option</span>
-                        </div>
-                      </div>
-                    </div>
+                    {[
+                      {
+                        alt: 'Arabian Sea Sunset Lawn',
+                        image: property.weddingVenuesInfo.images?.[0] || 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80'
+                      },
+                      {
+                        alt: 'Grand Horizon Ballroom',
+                        image: property.weddingVenuesInfo.images?.[1] || 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80'
+                      },
+                      {
+                        alt: 'Poolside Patio & Resort Buyout',
+                        image: property.weddingVenuesInfo.images?.[2] || 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80'
+                      }
+                    ].map((card, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: idx * 0.12 }}
+                        whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                        className="group relative aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden shadow-soft-lg hover:shadow-2xl transition-all duration-500 border border-rose-200/60 hover:border-rose-400"
+                      >
+                        <img
+                          src={card.image}
+                          alt={card.alt}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                        />
+                      </motion.div>
+                    ))}
                   </div>
 
                   {/* 4 Dedicated Venue Capacity Cards */}

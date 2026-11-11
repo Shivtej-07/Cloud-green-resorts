@@ -3,8 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
 import About from '../pages/About';
-import Rooms from '../pages/Rooms';
-import RoomDetails from '../pages/RoomDetails';
 import Spa from '../pages/Spa';
 import Amenities from '../pages/Amenities';
 import Gallery from '../pages/Gallery';
@@ -31,8 +29,6 @@ export default function AppRoutes() {
         <Route path="destinations" element={<Destinations />} />
         <Route path="destinations/:id" element={<PropertyDetails />} />
         <Route path="properties/:id" element={<PropertyDetails />} />
-        <Route path="rooms" element={<Rooms />} />
-        <Route path="rooms/:id" element={<RoomDetails />} />
         <Route path="spa" element={<Spa />} />
         <Route path="amenities" element={<Amenities />} />
         <Route path="gallery" element={<Gallery />} />

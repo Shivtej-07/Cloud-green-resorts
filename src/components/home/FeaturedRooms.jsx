@@ -29,7 +29,7 @@ export default function FeaturedRooms() {
       title: 'Luxury Stay Experience',
       description: 'Enjoy elegant rooms, scenic views, premium amenities, and thoughtfully designed spaces for relaxation, family vacations, and memorable escapes.',
       linkText: 'EXPLORE LOCATION',
-      link: '/rooms',
+      link: '/destinations',
       badge: 'Boutique Stays',
       image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80'
     },

@@ -68,7 +68,7 @@ export default function Navbar() {
     { code: 'mr', label: 'मराठी', short: 'मरा' },
   ];
 
-  // Determine if we are on a page with cinematic full-screen hero where navbar starts transparent
+  // Determine if we are on a page with dark cinematic full-screen hero where navbar starts transparent
   const hasCinematicHero = location.pathname === '/' || location.pathname.startsWith('/destinations');
   const showSolidNav = isScrolled || !hasCinematicHero;
 

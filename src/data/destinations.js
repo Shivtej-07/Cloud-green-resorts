@@ -78,6 +78,27 @@ export const destinations = [
       ]
     },
 
+    // Wellness Spa Showcase (Mahabaleshwar & Dapoli)
+    spaInfo: {
+      name: "The Reveridge Wellness Spa",
+      badge: "Wellness Spa • Mahabaleshwar & Dapoli",
+      tagline: "Massage, treatments, therapies, steam and sauna in a tranquil Sahyadri mountain sanctuary",
+      timings: "Open Daily: 8:00 AM – 8:00 PM",
+      features: [
+        { title: "Signature Massages", desc: "Swedish relaxation, traditional Ayurvedic Abhyanga & deep tissue mountain relief" },
+        { title: "Botanical Treatments", desc: "Mahabaleshwar strawberry herbal body scrubs, organic wraps & Cloud Glow facials" },
+        { title: "Holistic Therapies", desc: "Aromatherapy journeys with hill eucalyptus, chamomile & cold-pressed botanical oils" },
+        { title: "Herbal Steam Chamber", desc: "Aromatic steam detoxification infused with wild eucalyptus and lemongrass essence" },
+        { title: "Cedarwood Dry Sauna", desc: "Soothing dry thermal sauna sessions to ease joint tension and restore circulation" },
+        { title: "Mahabaleshwar & Dapoli", desc: "Full-service certified wellness sanctuaries available across both Reveridge resorts" }
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+
     // Verbatim Room Categories & 4-Tier Pricing
     pricingNote: "All prices per room per night. Taxes applicable. Balcony rooms have direct valley and sunset views. B + L/D = Breakfast + Lunch or Dinner (guest's choice). Panorama Suite meal plan rates are indicative — confirm with reservations team.",
     roomCategories: [
@@ -1125,6 +1146,27 @@ export const destinations = [
         "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
         "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80",
         "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80"
+      ]
+    },
+
+    // Wellness Spa Showcase (Mahabaleshwar & Dapoli)
+    spaInfo: {
+      name: "The Reveridge Wellness Spa",
+      badge: "Wellness Spa • Mahabaleshwar & Dapoli",
+      tagline: "Massage, treatments, therapies, steam and sauna overlooking the tranquil Konkan coastline",
+      timings: "Open Daily: 8:00 AM – 8:00 PM",
+      features: [
+        { title: "Signature Massages", desc: "Swedish relaxation, Ayurvedic Abhyanga & soothing ocean-breeze full-body therapies" },
+        { title: "Botanical Treatments", desc: "Coastal herbal body scrubs, bridal glow rituals & restorative facial therapies" },
+        { title: "Holistic Therapies", desc: "Aromatherapy elixirs and stress-dissolving neuromuscular healing sessions" },
+        { title: "Herbal Steam Chamber", desc: "Aromatic steam detoxification to refresh skin and clear respiratory pathways" },
+        { title: "Cedarwood Dry Sauna", desc: "Warm restorative thermal sauna rooms for deep muscle recovery & serenity" },
+        { title: "Dapoli & Mahabaleshwar", desc: "Full-service certified wellness sanctuaries available across both Reveridge resorts" }
+      ],
+      images: [
+        "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1000&q=80"
       ]
     },
 

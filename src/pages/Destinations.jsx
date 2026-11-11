@@ -15,49 +15,26 @@ import {
   Compass, 
   ArrowRight,
   ShieldCheck,
-  HeartHandshake,
-  ChevronLeft,
-  ChevronRight
+  HeartHandshake
 } from 'lucide-react';
 import { destinations, destinationsSummary, brandDetails } from '../data/destinations';
-import DestinationIcon from '../components/common/DestinationIcons';
 import BrandPhilosophy from '../components/common/BrandPhilosophy';
 import { siteConfig } from '../data/siteConfig';
 import WhatsAppIcon from '../components/common/WhatsAppIcon';
 
 /**
- * Modern Interactive Image Slider for each destination card using Framer Motion
+ * Clean single-image showcase panel for each destination card
  */
-function DestinationCardSlider({ prop }) {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const images = prop.images && prop.images.length > 0 ? prop.images : [];
-
-  const handlePrev = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActiveIdx((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActiveIdx((prev) => (prev + 1) % images.length);
-  };
+function DestinationCardImage({ prop }) {
+  const coverImage = prop.images && prop.images.length > 0 ? prop.images[0] : '';
 
   return (
     <Link to={`/destinations/${prop.id}`} className="lg:col-span-5 relative h-72 lg:h-auto min-h-[300px] overflow-hidden group block bg-forest-950">
-      <AnimatePresence mode="wait">
-        <motion.img
-          key={activeIdx}
-          src={images[activeIdx] || images[0]}
-          alt={`${prop.name} photo ${activeIdx + 1}`}
-          initial={{ opacity: 0.4, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0.3 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-        />
-      </AnimatePresence>
+      <img
+        src={coverImage}
+        alt={prop.name}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+      />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25 pointer-events-none" />
 
@@ -79,41 +56,13 @@ function DestinationCardSlider({ prop }) {
         )}
       </div>
 
-      {/* Prev / Next Controls on Card */}
-      {images.length > 1 && (
-        <div className="absolute inset-y-0 left-2 right-2 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
-          <button
-            onClick={handlePrev}
-            className="p-1.5 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md transition-all pointer-events-auto transform hover:scale-110 shadow-lg border border-white/20"
-            aria-label="Previous photo"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="p-1.5 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md transition-all pointer-events-auto transform hover:scale-110 shadow-lg border border-white/20"
-            aria-label="Next photo"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-      )}
-
-      {/* Bottom info on image: Rating & Slide Counter */}
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white z-10">
+      {/* Bottom info on image: Rating */}
+      <div className="absolute bottom-4 left-4 flex items-center text-xs text-white z-10">
         <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
           <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
           <span className="font-bold">{prop.rating}</span>
           <span className="text-white/70">({prop.reviewCount})</span>
         </div>
-
-        {images.length > 1 && (
-          <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-medium text-cream-200">
-            <span>{activeIdx + 1}</span>
-            <span>/</span>
-            <span>{images.length}</span>
-          </div>
-        )}
       </div>
     </Link>
   );
@@ -127,13 +76,7 @@ export default function Destinations() {
   // Background slides composed from all 5 destinations
   const heroSlides = destinations.map((dest) => ({
     id: dest.id,
-    image: dest.images[0],
-    name: dest.name,
-    shortName: dest.shortName,
-    propertyCode: dest.propertyCode,
-    location: dest.location,
-    badge: dest.badge,
-    type: dest.type
+    image: dest.images[0]
   }));
 
   // Auto slide background every 5 seconds
@@ -145,24 +88,27 @@ export default function Destinations() {
     return () => clearInterval(timer);
   }, [isAutoPlaying, heroSlides.length]);
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
-
   const categories = [
-    { id: 'all', label: 'All 5 Properties' },
-    { id: 'Resort & Spa', label: 'Resorts & Spa' },
-    { id: 'Private Luxury Villa', label: 'Private Villas (4 & 6 BHK)' },
-    { id: 'Heritage Cottage', label: 'Heritage Cottages' }
+    { id: 'all', label: 'All 5 Properties', match: () => true },
+    {
+      id: 'resort',
+      label: 'Resorts & Spa',
+      match: (d) => (d.category || '').toLowerCase().includes('resort')
+    },
+    {
+      id: 'villa',
+      label: 'Private Villas (4 & 6 BHK)',
+      match: (d) => (d.category || '').toLowerCase().includes('villa')
+    },
+    {
+      id: 'cottage',
+      label: 'Heritage Cottages',
+      match: (d) => (d.category || '').toLowerCase().includes('cottage')
+    }
   ];
 
-  const filteredDestinations = activeFilter === 'all'
-    ? destinations
-    : destinations.filter(d => d.category === activeFilter);
+  const activeCategoryConfig = categories.find((c) => c.id === activeFilter) || categories[0];
+  const filteredDestinations = destinations.filter(activeCategoryConfig.match);
 
   return (
     <>
@@ -225,52 +171,6 @@ export default function Destinations() {
               <span>Mahabaleshwar • Matheran • Dapoli</span>
             </div>
           </div>
-
-          {/* Modern Slide Controls & Active Property Indicator */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            {/* Prev/Next arrows & dots */}
-            <div className="flex items-center gap-2 bg-forest-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-gold-500/30 shadow-md">
-              <button
-                onClick={handlePrevSlide}
-                className="p-1 rounded-full text-cream-200 hover:text-white hover:bg-white/10 transition-colors"
-                aria-label="Previous destination background"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              <div className="flex items-center gap-1.5 px-2">
-                {heroSlides.map((slide, sIdx) => (
-                  <button
-                    key={slide.id}
-                    onClick={() => setCurrentSlide(sIdx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      currentSlide === sIdx ? 'w-6 bg-gold-400' : 'w-1.5 bg-white/40 hover:bg-white/70'
-                    }`}
-                    aria-label={`Slide to ${slide.name}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={handleNextSlide}
-                className="p-1 rounded-full text-cream-200 hover:text-white hover:bg-white/10 transition-colors"
-                aria-label="Next destination background"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Direct Link Tag for Currently Shown Destination */}
-            <Link
-              to={`/destinations/${heroSlides[currentSlide].id}`}
-              className="group inline-flex items-center gap-2 text-xs text-cream-100 bg-forest-900/85 hover:bg-forest-900 backdrop-blur-md border border-gold-500/40 px-4 py-2 rounded-full transition-all shadow-md"
-            >
-              <span className="text-gold-400 font-bold uppercase tracking-wider">{heroSlides[currentSlide].propertyCode}:</span>
-              <span className="font-semibold text-white group-hover:text-gold-300 transition-colors">{heroSlides[currentSlide].shortName}</span>
-              <span className="text-cream-300/70 text-[11px] hidden md:inline">• {heroSlides[currentSlide].badge}</span>
-              <ArrowRight className="w-3.5 h-3.5 text-gold-400 group-hover:translate-x-1 transition-transform ml-0.5" />
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -286,8 +186,9 @@ export default function Destinations() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   activeFilter === cat.id
                     ? 'bg-forest-800 text-white shadow-md'
                     : 'bg-white text-slate-700 hover:bg-forest-50 hover:text-forest-900 border border-slate-200'
@@ -302,43 +203,35 @@ export default function Destinations() {
           <div className="space-y-12">
             {filteredDestinations.map((prop, idx) => (
               <motion.div
-                key={prop.id}
+                key={`${activeFilter}-${prop.id}`}
                 id={prop.id}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-soft-lg border border-slate-200/80 grid grid-cols-1 lg:grid-cols-12 hover:border-gold-500/50 transition-all duration-300"
               >
-                {/* Left/Top: Interactive Photo Gallery Carousel using Framer Motion */}
-                <DestinationCardSlider prop={prop} />
+                {/* Left/Top: Single Cover Image */}
+                <DestinationCardImage prop={prop} />
 
                 {/* Right: Property Details */}
                 <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
                   <div>
                     {/* Header Row */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-xs font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-2.5 py-0.5 rounded-full">
-                            {prop.type}
-                          </span>
-                          <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
-                            <MapPin className="w-3.5 h-3.5 text-gold-500" />
-                            {prop.location}
-                          </span>
-                        </div>
-                        <Link to={`/destinations/${prop.id}`} className="hover:text-forest-800 transition-colors">
-                          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest-950 tracking-tight leading-tight">
-                            {prop.name}
-                          </h2>
-                        </Link>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span className="text-xs font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-2.5 py-0.5 rounded-full">
+                          {prop.type}
+                        </span>
+                        <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-gold-500" />
+                          {prop.location}
+                        </span>
                       </div>
-
-                      {/* Line-art Icon Container */}
-                      <div className="w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] max-w-[3.5rem] max-h-[3.5rem] rounded-2xl bg-slate-50 border border-slate-200 p-2.5 shrink-0 hidden sm:flex items-center justify-center">
-                        <DestinationIcon type={prop.iconType} className="w-full h-full object-contain" />
-                      </div>
+                      <Link to={`/destinations/${prop.id}`} className="hover:text-forest-800 transition-colors">
+                        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest-950 tracking-tight leading-tight">
+                          {prop.name}
+                        </h2>
+                      </Link>
                     </div>
 
                     {/* Tagline */}

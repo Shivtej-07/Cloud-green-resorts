@@ -1,39 +1,17 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, X } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Phone } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 import WhatsAppIcon from './WhatsAppIcon';
 
 export default function FloatingButtons() {
   const { siteConfig } = useData();
-  const [showTooltip, setShowTooltip] = useState(true);
 
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent("Hello Reveridge! I would like to inquire about boutique stays and tariffs.")}`;
   const callUrl = `tel:${siteConfig.contact.phone}`;
 
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 flex flex-col items-end gap-2.5 print:hidden">
-      {/* WhatsApp Floating Prompt Tooltip */}
-      <AnimatePresence>
-        {showTooltip && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 10 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.8, x: 10 }}
-            className="hidden sm:flex items-center gap-2 bg-white text-slate-800 text-xs font-medium py-2 px-3.5 rounded-2xl shadow-xl border border-slate-100 max-w-xs"
-          >
-            <span>💬 Planning a visit? Chat with our Reveridge team!</span>
-            <button
-              onClick={() => setShowTooltip(false)}
-              className="text-slate-400 hover:text-slate-600 ml-1 p-0.5 rounded-full"
-              aria-label="Close tooltip"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <div className="flex items-center gap-2.5">
         {/* Click-to-Call Button */}
         <motion.a
